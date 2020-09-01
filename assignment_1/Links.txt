@@ -1,0 +1,2 @@
+https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09506000
+https://waterdata.usgs.gov/nwis/dv?cb_00060=on&format=gif_default&site_no=09506000&referred_module=sw&period=&begin_date=1989-01-01&end_date=2020-08-30
