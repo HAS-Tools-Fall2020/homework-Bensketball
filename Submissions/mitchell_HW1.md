@@ -10,4 +10,4 @@ ___
 ## Estimation Explanation
 
 I decided to use the graph below to make my discharge estimation:
-![graph1](/homework-Bensketball/data/USGS.09506000.5707.00060.00003.20190824.20191231.log.0.p50.gif)
+![graph1](\Submissions\USGS.09506000.5707.00060.00003.20190824.20191231.log.0.p50.gif)
