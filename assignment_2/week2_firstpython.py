@@ -40,5 +40,3 @@ ax.set_xlabel('Date')
 
 
 # %%
-
-# %%
