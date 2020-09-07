@@ -7,12 +7,9 @@
 
 ___
 <a name="est"></a>
-## Estimation Explanation
+## Estimation2 Explanation
 
-For my first estimate, I decided to utilize the graph below:
-___
-![graph1](USGS.09506000.5707.00060.00003.20190824.20191231.log.0.p50.gif "Discharge for gage# 09506000, 07/31/2019 to 12/31/2019")
-___
-As said, [my estimate](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) titled *mitchell.csv* utilized only the orange-colored line, *Median daily statistical (41 years)*, presenting in the graph above.  The graph goes from 07/31/2019 to 12/31/2019, the period of interest in making future predictions.  The data graphed and represented here was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.  Thank you!
+For my second estimate, I decided to use a prewritten python code using Visual Studio Code.  The python code allowed me to look at specific individual dates that I would plug in myself.  The code has been manipulated to given more than one year per date being estimated (3 different past years).  [My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row two of *mitchell.csv*, was estimated by looking at the respecting dates in the years 2019, 2018, and 2017.  From these three numbers an estimated average was given (no math).  The data utilized for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.  Thank you!
+
 ___
 ## Grade:
