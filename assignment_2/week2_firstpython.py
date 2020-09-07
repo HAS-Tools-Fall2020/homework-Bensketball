@@ -38,3 +38,7 @@ ax=data.iloc[400:500]['flow'].plot(linewidth=0.5)
 ax.set_ylabel('Daily Flow [cfs]')
 ax.set_xlabel('Date')
 
+
+# %%
+
+# %%
