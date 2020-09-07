@@ -13,3 +13,4 @@ For my second estimate, I decided to use a prewritten python code using Visual S
 
 ___
 ## Grade:
+3/3 - Nice work. I like how you even have a table of contents here!
