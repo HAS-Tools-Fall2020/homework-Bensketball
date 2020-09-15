@@ -2,6 +2,15 @@
 ## `9/13/2020`
 ## Homework #3
 
+---------
+# Grade
+
+2/3 - Great job on the forecast but you didn't answer the assignment questions. Make sure you get those answered next time. 
+
+In answer to your question the link is fine  or you can also just make a copy of the script and put it in your submissions folder. I'm not going to run it I just want to be albe to look at them easily.
+
+---
+
 ### Table of Contents Test:
 1. [ Discharge Estimation](#est)
 2. [ Python Code](#cod)
