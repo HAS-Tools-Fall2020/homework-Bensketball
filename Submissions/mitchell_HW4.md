@@ -1,13 +1,11 @@
 # Benjamin Mitchell
-## `9/13/2020`
-## Homework #3
+## `9/15/2020`
+## Homework #4
 
 ___
 # ***Grade***
 
-2/3 - Great job on the forecast but you didn't answer the assignment questions. Make sure you get those answered next time.
 
-In answer to your question the link is fine or you can also just make a copy of the script and put it in your submissions folder. I'm not going to run it I just want to be able to look at them easily.
 
 ___
 ### Table of Contents:
@@ -20,25 +18,34 @@ ___
 <a name="qns"></a>
 ## Assignment Questions
 
-1. Describe the variables flow, year, month, and day. What type of objects are they, what are they composed of, and how long are they?
-
-**Ans:**
-`'flow', 'year', 'month', and 'day' are all lists, "cut up" from the downloaded USGS NWIS data titled 'streamflow_week3.txt'.
-`
-
-2. How many times was the daily flow greater than your prediction in the month of September (express your answer in terms of the total number of times and as a percentage)?
+1. Include discussion of the quantitative analysis that lead to your prediction. This can include any analysis you complete but must include at least two histograms and some quantitative discussion of flow quantiles that helped you make your decision.
 
 **Ans:**
 `
 `
 
-3. How would your answer to the previous question change if you considered only daily flows in or before 2000? Same question for the flows in or after the year 2010? (again report total number of times and percentage)
+2. Describe the variable flow_data:
+- What is it?
+- What type of values is composed of?
+- What is are its dimensions, and total size?
 
 **Ans:**
 `
 `
 
-4. How does the daily flow generally change from the first half of September to the second?
+3. How many times was the daily flow greater than your prediction in the month of September (express your answer in terms of the total number of times and as a percentage)?
+
+**Ans:**
+`
+`
+
+4. How would your answer to the previous question change if you considered only daily flows in or before 2000? Same question for the flows in or after the year 2010? (again report total number of times and percentage)
+
+**Ans:**
+`
+`
+
+5. How does the daily flow generally change from the first half of September to the second?
 
 **Ans:**
 `
