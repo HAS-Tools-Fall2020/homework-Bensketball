@@ -63,7 +63,7 @@ ___
 <a name="cod"></a>
 ## My Python Code3:
 
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_4/week4_lists_starter_BM.py).  Let me know if you would like me to put it in the "Submissions" folder instead of using a link.  Trying to get a better way to organize my files for future HW assignments.
+The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_4/week4_numpy_starter_BM.py).  Let me know if you would like me to put it in the "Submissions" folder instead of using a link.  Trying to get a better way to organize my files for future HW assignments.
 
 ___
 <a name="cit"></a>
