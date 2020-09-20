@@ -70,5 +70,5 @@ ___
 ## Works Cited:
 C:\Users\Yoko\Documents\HAS-Tools-Fall2020\forecasting\forecast_entries\mitchell.csv
 
-[My estimate,](~/../forecasting/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
+[My estimate,](../../../forecasting/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
 ###### ~Thank you!
