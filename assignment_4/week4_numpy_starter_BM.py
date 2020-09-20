@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # %%
 # ** MODIFY **
 # Set the file name and path to where you have stored the data
-filename = 'streamflow_week1.txt'
+filename = 'streamflow_week4_temp.txt'
 filepath = os.path.join('data', filename)
 print(os.getcwd())
 print(filepath)
@@ -69,3 +69,9 @@ print('Method one flow quantiles:', flow_quants1)
 flow_quants2 = np.quantile(flow_data, q=[0,0.1, 0.5, 0.9], axis=0)
 # and then just printing out the values for the flow column
 print('Method two flow quantiles:', flow_quants2[:,3])
+# %%
+# print(data)
+print(len(flow_data))
+# %%
+
+# %%
