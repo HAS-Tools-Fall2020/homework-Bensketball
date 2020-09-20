@@ -75,7 +75,7 @@ print(../assignment_3/week3_lists_starter_BM.py)
 ___
 test3:
 
-[found here](http://web.simmons.edu/~grabiner/comm244/weekfour/code-test.html)
+[source](http://web.simmons.edu/~grabiner/comm244/weekfour/code-test.html)
 
 <pre>
   <code>

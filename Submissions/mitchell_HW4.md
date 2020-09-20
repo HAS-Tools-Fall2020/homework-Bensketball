@@ -55,7 +55,7 @@ ___
 
 ___
 <a name="est"></a>
-## Estimation3 Explanation
+## Estimation4 Explanation
 
 For my third estimate, I decided to use and transform a prewritten python code using Visual Studio Code.  The python code, I wrote, allowed me to compare different years (2017, 2018, 2019, and 2020) in the week leading up to the 14th of September (09-06-year through 09-12-year).  I also took the week flow data described and calculated the min, max, mean, and STDV of the flow lists I created.  I eventually want to create a linear regression on the data, but I will have to wait until we are allowed to do so.  I was trying to create a 'For' loop that involved the year part of the dates as well, but this turned out to be too ambitious for the time I had to work on it.  Sorry for the late submission of the markdown file.  I spent too much time on the coding part of this assignment.
 
@@ -68,7 +68,6 @@ The Python Code, created in Visual Studio Code (VSC), can be found [here](../ass
 ___
 <a name="cit"></a>
 ## Works Cited:
-C:\Users\Yoko\Documents\HAS-Tools-Fall2020\forecasting\forecast_entries\mitchell.csv
 
-[My estimate,](/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
+[My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
 ###### ~Thank you!
