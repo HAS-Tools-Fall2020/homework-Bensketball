@@ -73,11 +73,22 @@ print(../assignment_3/week3_lists_starter_BM.py)
 ```
 
 ___
-test3
+test3:
 
-<p>
+[found here](http://web.simmons.edu/~grabiner/comm244/weekfour/code-test.html)
+
+<pre>
+  <code>
+    open(../assignment_3/week3_lists_starter_BM.py)
+  </code>
+</pre>
+
+___
+test4:
+
+<code>
 print(../assignment_3/week3_lists_starter_BM.py)
-</code></p>
+</code>
 
 ___
 <a name="cit"></a>

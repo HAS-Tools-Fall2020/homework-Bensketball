@@ -63,11 +63,12 @@ ___
 <a name="cod"></a>
 ## My Python Code3:
 
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_3/week3_lists_starter_BM.py).  Let me know if you would like me to put it in the "Submissions" folder instead of using a link.  Trying to get a better way to organize my files for future HW assignments.
+The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_4/week4_lists_starter_BM.py).  Let me know if you would like me to put it in the "Submissions" folder instead of using a link.  Trying to get a better way to organize my files for future HW assignments.
 
 ___
 <a name="cit"></a>
 ## Works Cited:
+C:\Users\Yoko\Documents\HAS-Tools-Fall2020\forecasting\forecast_entries\mitchell.csv
 
-[My estimate,](../../forecasting/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
+[My estimate,](~/../forecasting/forecast_entries/mitchell.csv) given in row 4 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
 ###### ~Thank you!
