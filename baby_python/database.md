@@ -39,4 +39,4 @@ console.log("Hello World")
 
 <video controls src="https://www.youtube.com/watch?v=Z1Yd7upQsXY&ab_channel=CSDojo">animation</video>
 
-![pycon-logo.jpg](attachment:pycon-logo.jpg)
+![pycon-logo.jpg](img/035575f2985fe451d86e717d73691e533a1a00545d7230900ed786341dc3c882.jpg)
