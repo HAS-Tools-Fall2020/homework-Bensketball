@@ -57,7 +57,27 @@ ___
 The Python Code, created in Visual Studio Code (VSC), can be found [here](https://github.com/HAS-Tools-Fall2020/homework-Bensketball/blob/master/assignment_3/week3_lists_starter_BM.py).  Let me know if you would like me to put it in the "Submissions" folder instead of using a link.  Trying to get a better way to organize my files for future HW assignments.
 
 
-    test1: [code](../assignment_3/week3_lists_starter_BM.py "Discharge for gage# 09506000, 07/31/2019 to 12/31/2019")
+    test1: [code](../assignment_3/week3_lists_starter_BM.py "my_code")
+
+test2:
+```python
+# week3_lists_starter_BM.py
+import sys
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(week3_lists_starter_BM.py, '../assignment_3/')
+
+import week3_lists_starter_BM.py
+
+print "Hello World"
+print(../assignment_3/week3_lists_starter_BM.py)
+```
+
+___
+test3
+
+<p>
+print(../assignment_3/week3_lists_starter_BM.py)
+</code></p>
 
 ___
 <a name="cit"></a>

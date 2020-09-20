@@ -1,3 +1,5 @@
+Source: https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html
+___
 \*literal asterisks\*
  *literal asterisks*
 
@@ -14,10 +16,10 @@
       printf("hello %d\n", i);
       x += 4;
     }
+___
+      $e^{i\pi} + 1 = 0$
 
-$e^{i\pi} + 1 = 0$
-
-$$e^x=\sum_{i=0}^\infty \frac{1}{i!}x^i$$
+      $$e^x=\sum_{i=0}^\infty \frac{1}{i!}x^i$$
 
 ```python
 print "Hello World"
@@ -37,6 +39,6 @@ console.log("Hello World")
 
 <video controls src="../images/animation.m4v">animation</video>
 
-<video controls src="https://www.youtube.com/watch?v=Z1Yd7upQsXY&ab_channel=CSDojo">animation</video>
+<video controls src="https://www.youtube.com/watch?v=Z1Yd7upQsXY&ab_channel=CSDojo">python</video>
 
 ![pycon-logo.jpg](img/035575f2985fe451d86e717d73691e533a1a00545d7230900ed786341dc3c882.jpg)
