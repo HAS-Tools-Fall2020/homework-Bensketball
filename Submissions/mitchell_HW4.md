@@ -61,11 +61,13 @@ ___
 ## Estimation4 Explanation
 
 For this weeks estimate (4), I decided to use and transform a prewritten python code using Visual Studio Code.  The python code section I wrote, allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
+
 ![g9](../assignment_4/graphs/g9.png "g9")
 
 As you can see, in September, the smallest "bin" filled in with data is from 0 to 40.  I took the flow 40 as the first guess in the month of September, took 40 and averaged it with the mean for this month, 132.6.  This gives 86.3 and I used this for the two "middle" weeks of the month.  The final September guess was the mean or 132.6.  I did this for all months after this.  I thought since there is an average trend to be dry for a bit and then shoot up because of snowmelt, why not guess in a similar patter.  I am hopeful!
 
 The graph below was used for my weekly guess:
+
 ![flow_202009](../assignment_4/graphs/flow_202009.png "flow_202009")
 
 I was able to do some simple liner interpolation with the first three points trending downwards.
