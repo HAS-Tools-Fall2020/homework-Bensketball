@@ -113,7 +113,7 @@ print(flow_data.shape)
 print(flow_data.size)
 print(flow_data.shape)
 flow_202009 = flow_data[11571:11585, 3]
-# print(flow_202009)
+print(flow_202009)
 
 x = [6.,7,8,9,10,11,12,13,14,15,16,17,18,19]
 fig9 = plt.figure()

@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # %%
 # ** MODIFY **
 # Set the file name and path to where you have stored the data
-filename = 'streamflow_week1.txt'
+filename = 'streamflow_week4.txt'
 filepath = os.path.join('data', filename)
 print(os.getcwd())
 print(filepath)
@@ -69,3 +69,46 @@ print('Method one flow quantiles:', flow_quants1)
 flow_quants2 = np.quantile(flow_data, q=[0,0.1, 0.5, 0.9], axis=0)
 # and then just printing out the values for the flow column
 print('Method two flow quantiles:', flow_quants2[:,3])
+# %%
+# Question #2
+
+print(flow_data.dtype)
+print(flow_data.size)
+print(flow_data.shape)
+
+# %%
+# Question #3
+
+flow_data9 = flow_data[(flow_data[:,1]==9), 3]
+# print(flow_data9 > 50.7)
+flow_data_t = np.count_nonzero(flow_data9 > 50.7)
+print(flow_data_t)
+print(flow_data9.shape)
+print(type(flow_data_t))
+print(type(flow_data9.shape[0]))
+print((flow_data_t)/(flow_data9.shape[0]))
+
+# %%
+# Question #4
+
+flow_data92000 = flow_data[(flow_data[:,1]==9) & (flow_data[:,0]<=2000), 3]
+print(flow_data92000 > 50.7)
+flow_data_t2 = np.count_nonzero(flow_data92000 > 50.7)
+print(flow_data_t2)
+print(flow_data92000.shape)
+print(type(flow_data_t2))
+print(type(flow_data92000.shape[0]))
+print((flow_data_t2)/(flow_data92000.shape[0]))
+
+flow_data92010 = flow_data[(flow_data[:,1]==9) & (flow_data[:,0]>=2010), 3]
+print(flow_data92010 > 50.7)
+flow_data_t3 = np.count_nonzero(flow_data92010 > 50.7)
+print(flow_data_t3)
+print(flow_data92010.shape)
+print(type(flow_data_t3))
+print(type(flow_data92010.shape[0]))
+print((flow_data_t3)/(flow_data92010.shape[0]))
+
+# %%
+#Question #5
+
