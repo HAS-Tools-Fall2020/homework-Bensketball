@@ -110,5 +110,61 @@ print(type(flow_data92010.shape[0]))
 print((flow_data_t3)/(flow_data92010.shape[0]))
 
 # %%
-#Question #5
+#Question #5?
 
+flow_data9_1st = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]!=2020) & (flow_data[:,2]<=15), 3]
+x_1st = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]!=2020) & (flow_data[:,2]<=15),2]
+print(flow_data9_1st)
+print(x_1st)
+
+fig9_1st = plt.figure()
+fig9_1st.patch.set_facecolor('xkcd:mint green')
+plt.plot(x_1st, flow_data9_1st)
+plt.xlabel('days in September')
+plt.ylabel('flow(s)')
+plt.legend()
+plt.savefig('graphs/flow_data9_1st')
+
+
+flow_data9_2nd = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]!=2020) & (flow_data[:,2]>=15), 3]
+x_2nd = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]!=2020) & (flow_data[:,2]>=15),2]
+print(flow_data9_2nd)
+print(x_2nd)
+
+fig9_1st = plt.figure()
+fig9_1st.patch.set_facecolor('xkcd:mint green')
+plt.plot(x_2nd, flow_data9_2nd)
+plt.xlabel('days in September')
+plt.ylabel('flow(s)')
+plt.legend()
+plt.savefig('graphs/flow_data9_2nd')
+# %%
+#Question 5!
+
+flow_data9_1st = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]==2020) & (flow_data[:,2]<=15), 3]
+x_1st = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]==2020) & (flow_data[:,2]<=15),2]
+print(flow_data9_1st)
+print(x_1st)
+
+fig9_1st = plt.figure()
+fig9_1st.patch.set_facecolor('xkcd:mint green')
+plt.plot(x_1st, flow_data9_1st)
+plt.xlabel('days in September 2020')
+plt.ylabel('flow(s)')
+plt.legend()
+plt.savefig('graphs/flow_data92020_1st')
+
+
+flow_data9_2nd = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]==2020) & (flow_data[:,2]>=15), 3]
+x_2nd = flow_data[(flow_data[:,3] < 200) & (flow_data[:,1]==9) & (flow_data[:,0]==2020) & (flow_data[:,2]>=15),2]
+print(flow_data9_2nd)
+print(x_2nd)
+
+fig9_1st = plt.figure()
+fig9_1st.patch.set_facecolor('xkcd:mint green')
+plt.plot(x_2nd, flow_data9_2nd)
+plt.xlabel('days in September 2020')
+plt.ylabel('flow(s)')
+plt.legend()
+plt.savefig('graphs/flow_data92020_2nd')
+# %%
