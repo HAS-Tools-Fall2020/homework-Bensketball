@@ -64,9 +64,9 @@ for d in range(2010, 2020):
                 # data.flow[(data.year == 2010) & (data.month == i)]
                 x = list(range(1, 32))
                 plt.plot(x, (data.flow[(data.year == d) & (data.month == i)]))
-                plt.xlabel('days in %i'%(i))
+                plt.xlabel('days in month')
                 plt.legend(['1', '3', '5', '7', '8', '10', '12'])
-                # plt.savefig('graphs/flow_202009')
+                plt.savefig('graphs/flow-set1_%d'%(d))
 
                 
 # x = list(range(1, 32))
@@ -104,7 +104,7 @@ for d in range(2010, 2020):
                 plt.plot(x, (data.flow[(data.year == d) & (data.month == i)]))
                 plt.xlabel('days in the month')
                 plt.legend(['4', '6', '9', '11'])
-                # plt.savefig('graphs/flow_202009')
+                plt.savefig('graphs/flow-set2_%d'%(d))
 # %%
 # 2020
 
@@ -112,7 +112,7 @@ fig3 = plt.figure()
 fig3.patch.set_facecolor('xkcd:mint green')
 plt.title('2020')
 plt.ylabel('flow')
-for i in (1, 3, 5, 7, 8, 10, 12):
+for i in (1, 3, 5, 7, 8):
         # print(i)
         # print(data.flow[(data.year == 2010) & (data.month == i)].mean)
         # print("\n")
@@ -121,15 +121,16 @@ for i in (1, 3, 5, 7, 8, 10, 12):
         # print(x)
         plt.plot(x, (data.flow[(data.year == 2020) & (data.month == i)]))
         plt.xlabel('days in the month')
-        plt.legend(['1', '3', '5', '7', '8', '10', '12'])
-        # plt.savefig('graphs/flow_202009')
+        plt.legend(['1', '3', '5', '7', '8'])
+        plt.savefig('graphs/flow-set3_2020-%i'%(i))
 
+data.flow[(data.year == 2020) & (data.month == 1)]
 
 fig4 = plt.figure()
 fig4.patch.set_facecolor('xkcd:mint green')
-plt.title('2020'
+plt.title('2020')
 plt.ylabel('flow')
-for i in (4, 6, 9, 11):
+for i in (4, 6):
         # print(i)
         # print(data.flow[(data.year == 2010) & (data.month == i)].mean)
         # print("\n")
@@ -138,6 +139,17 @@ for i in (4, 6, 9, 11):
         # print(x)
         plt.plot(x, (data.flow[(data.year == 2020) & (data.month == i)]))
         plt.xlabel('days in the month')
-        plt.legend(['4', '6', '9', '11'])
-        # plt.savefig('graphs/flow_202009')
+        plt.legend(['4', '6'])
+        plt.savefig('graphs/flow-set4_2020-%i'%(i))
+# %%
+# When September Ends
+x = list(range(1, 27))
+fig5 = plt.figure()
+fig5.patch.set_facecolor('xkcd:mint green')
+plt.title('2020-9')
+plt.ylabel('flow')
+plt.plot(x, (data.flow[(data.year == 2020) & (data.month == 9)]))
+plt.xlabel('days in the month')
+plt.legend([])
+plt.savefig('graphs/flow-set5_2020-9')
 # %%

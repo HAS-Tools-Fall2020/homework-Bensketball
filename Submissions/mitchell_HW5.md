@@ -478,9 +478,9 @@ ___
 <a name="est"></a>
 ## Estimation5 Explanation
 
-For this weeks estimate (5), I decided to use a pandas data frames for my analysis.
+For this weeks estimate (5), I decided to use a pandas data frames for my analysis.  My python code section,
 
-The python code section I wrote, allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
+allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
 
 ![g9](../assignment_4/graphs/g9.png "All September Data")
 
@@ -488,30 +488,66 @@ As you can see, in September, the smallest "bin" filled in with data is from 0 t
 
 The graph below was used for my weekl1 and week2 guesses:
 
-![flow_202009](../assignment_4/graphs/flow_202009.png "flow from 9/5/2020 to 9/19/2020")
+![g2020-5](../assignment_5/graphs/flow-set5_2020-9.png "2020")
 
-I was able to do some simple liner interpolation with the first three points trending downwards.
+I gave my best guesses with the chart given.
 
 ___
 <a name="cod"></a>
 ## My Python Code(s)4:
 
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_4/week4_numpy_starter_BM.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/week4_numpy_starter.py).
+The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_5/week5_pandas_starter_BM.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/week5_pandas_starter.py).
 
 ___
 <a name="apd"></a>
 ## Appendices & Graphs
-Here are all the charts created with my code:
+Here are all the charts created with my code (there are a lot of them):
 
-![flow_202009](../assignment_4/graphs/flow_202009.png "flow from 9/5/2020 to 9/19/2020")
+![g2010-1](../assignment_5/graphs/flow-set1_2010.png "2010")
 
-![g9](../assignment_4/graphs/g9.png "All September Data")
+![g2011-1](../assignment_5/graphs/flow-set1_2011.png "2011")
 
-![g10](../assignment_4/graphs/g10.png "All October Data")
+![g2012-1](../assignment_5/graphs/flow-set1_2012.png "2012")
 
-![g11](../assignment_4/graphs/g11.png "All November Data")
+![g2013-1](../assignment_5/graphs/flow-set1_2013.png "2013")
 
-![g12](../assignment_4/graphs/g12.png "All December Data")
+![g2014-1](../assignment_5/graphs/flow-set1_2014.png "2014")
+
+![g2015-1](../assignment_5/graphs/flow-set1_2015.png "2015")
+
+![g2016-1](../assignment_5/graphs/flow-set1_2016.png "2016")
+
+![g2017-1](../assignment_5/graphs/flow-set1_2017.png "2017")
+
+![g2018-1](../assignment_5/graphs/flow-set1_2018.png "2018")
+
+![g2019-1](../assignment_5/graphs/flow-set1_2019.png "2019")
+
+![g2010-2](../assignment_5/graphs/flow-set2_2010.png "2010")
+
+![g2011-2](../assignment_5/graphs/flow-set2_2011.png "2011")
+
+![g2012-2](../assignment_5/graphs/flow-set2_2012.png "2012")
+
+![g2013-2](../assignment_5/graphs/flow-set2_2013.png "2013")
+
+![g2014-2](../assignment_5/graphs/flow-set2_2014.png "2014")
+
+![g2015-2](../assignment_5/graphs/flow-set2_2015.png "2015")
+
+![g2016-2](../assignment_5/graphs/flow-set2_2016.png "2016")
+
+![g2017-2](../assignment_5/graphs/flow-set2_2017.png "2017")
+
+![g2018-2](../assignment_5/graphs/flow-set2_2018.png "2018")
+
+![g2019-2](../assignment_5/graphs/flow-set2_2019.png "2019")
+
+![g2020-3](../assignment_5/graphs/flow-set3_2020-8.png "2020")
+
+![g2020-4](../assignment_5/graphs/flow-set4_2020-6.png "2020")
+
+![g2020-5](../assignment_5/graphs/flow-set5_2020-9.png "2020")
 
 ___
 <a name="cit"></a>
