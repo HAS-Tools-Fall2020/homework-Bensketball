@@ -152,4 +152,6 @@ plt.plot(x, (data.flow[(data.year == 2020) & (data.month == 9)]))
 plt.xlabel('days in the month')
 plt.legend([])
 plt.savefig('graphs/flow-set5_2020-9')
+
+print((data.flow[(data.year == 2020) & (data.month == 9)]))
 # %%

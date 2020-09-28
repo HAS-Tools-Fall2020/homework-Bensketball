@@ -478,19 +478,33 @@ ___
 <a name="est"></a>
 ## Estimation5 Explanation
 
-For this weeks estimate (5), I decided to use a pandas data frames for my analysis.  My python code section,
+For this weeks estimate (5), I decided to use a pandas data frames for my analysis.  With my python code, I was able to pull out and plot all data from 2010 to August 2020.  I plotted all months using a for loop, first for the months that had 31 days (set_1) and then I plotted all months that had 30 days.  February was left out, but it was a month that was not important for my analysis.  I then looked a the trends of the same months, going from graph to graph.  For example, there was a trend in November of almost always increasing from the start of the month to the end of the month.  My estimations for November mirror this trend.  The graphs are plotting the flows for April, June, September, and November.  November is plotted via a red line so you may see the trend:
 
-allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
+![g2010-2](../assignment_5/graphs/flow-set2_2010.png "2010")
 
-![g9](../assignment_4/graphs/g9.png "All September Data")
+![g2011-2](../assignment_5/graphs/flow-set2_2011.png "2011")
 
-As you can see, in September, the smallest "bin" filled in with data is from 0 to 40.  I took the flow 40 as the first guess in the month of September, took 40 and averaged it with the mean for this month, 132.6.  This gives 86.3 and I used this for the two "middle" weeks of the month.  The final September guess was the mean or 132.6.  I did this for all months after this.  I thought since there is an average trend to be dry for a bit and then shoot up because of snowmelt, why not guess in a similar patter.  I am hopeful!
+![g2012-2](../assignment_5/graphs/flow-set2_2012.png "2012")
 
-The graph below was used for my weekl1 and week2 guesses:
+![g2013-2](../assignment_5/graphs/flow-set2_2013.png "2013")
+
+![g2014-2](../assignment_5/graphs/flow-set2_2014.png "2014")
+
+![g2015-2](../assignment_5/graphs/flow-set2_2015.png "2015")
+
+![g2016-2](../assignment_5/graphs/flow-set2_2016.png "2016")
+
+![g2017-2](../assignment_5/graphs/flow-set2_2017.png "2017")
+
+![g2018-2](../assignment_5/graphs/flow-set2_2018.png "2018")
+
+![g2019-2](../assignment_5/graphs/flow-set2_2019.png "2019")
+
+#### `The graph below was used for my weekl1 and week2 guesses:`
 
 ![g2020-5](../assignment_5/graphs/flow-set5_2020-9.png "2020")
 
-I gave my best guesses with the chart given.
+***I gave my best estimates with the chart given above.***
 
 ___
 <a name="cod"></a>
