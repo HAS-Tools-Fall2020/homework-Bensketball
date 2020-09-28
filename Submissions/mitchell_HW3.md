@@ -77,18 +77,25 @@ test3:
 
 [source](http://web.simmons.edu/~grabiner/comm244/weekfour/code-test.html)
 
-<pre>
-  <code>
-    open(../assignment_3/week3_lists_starter_BM.py)
-  </code>
-</pre>
+open(../assignment_3/week3_lists_starter_BM.py)
+
+<pre><code>
+open(../assignment_3/week3_lists_starter_BM.py)
+</code></pre>
 
 ___
 test4:
 
-<code>
-print(../assignment_3/week3_lists_starter_BM.py)
-</code>
+<p><code>
+Output some text from Python in <strong>Markdown</strong>:
+<code>python
+from sklearn.datasets import load_iris
+from sklearn import tree
+iris = load_iris()
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(iris.data, iris.target)
+clf.predict_proba(iris.data[:1, :])
+</code></p>
 
 ___
 <a name="cit"></a>

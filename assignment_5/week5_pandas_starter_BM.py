@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 # %%
 # ** MODIFY **
 # Set the file name and path to where you have stored the data
-filename = 'streamflow_week1.txt'
+filename = 'streamflow_week5.txt'
 filepath = os.path.join('data', filename)
 print(os.getcwd())
 print(filepath)
 
-filepath = '../Assignments/Solutions/data/streamflow_week1.txt'
+# filepath = '../Assignments/Solutions/data/streamflow_week1.txt'
 
 # %%
 #Read the data into a pandas dataframe
