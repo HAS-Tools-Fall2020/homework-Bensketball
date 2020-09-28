@@ -238,18 +238,55 @@ Name: flow, dtype: float64
 ```python
 # Question 4
 
-data['flow'].nlargest(5)
-data['flow'].nsmallest(5)
+# data[["datetime",'month', 'flow']]
+# ind1 = data.flow.nlargest(5).index
+# print(ind1)
+# data[['datetime','month', 'flow'],ind1]
+print(data.datetime[data.flow.nlargest(5).index])
+print(data.month[data.flow.nlargest(5).index])
+print(data.flow[data.flow.nlargest(5).index])
+
+print(data.datetime[data.flow.nsmallest(5).index])
+print(data.month[data.flow.nsmallest(5).index])
+print(data.flow[data.flow.nsmallest(5).index])
+
+# print(data.flow.nlargest(5))
+# print(data.month[data.flow.nsmallest(5)])
+# print(data.datetime[data['flow'].nsmallest(5)])
 ```
 
 **Output:**
 ```
+1468    1993-01-08
+1511    1993-02-20
+2236    1995-02-15
+5886    2005-02-12
+2255    1995-03-06
+Name: datetime, dtype: object
+1468    1
+1511    2
+2236    2
+5886    2
+2255    3
+Name: month, dtype: int32
 1468    63400.0
 1511    61000.0
 2236    45500.0
 5886    35600.0
 2255    30500.0
 Name: flow, dtype: float64
+8582    2012-07-01
+8583    2012-07-02
+8581    2012-06-30
+8580    2012-06-29
+8584    2012-07-03
+Name: datetime, dtype: object
+8582    7
+8583    7
+8581    6
+8580    6
+8584    7
+Name: month, dtype: int32
 8582    19.0
 8583    20.1
 8581    22.1
@@ -260,34 +297,190 @@ Name: flow, dtype: float64
 
 5. Find the highest and lowest flow values for every month of the year (i.e. you will find 12 maxes and 12 mins) and report back what year these occurred in.
 
-**Ans:**
-`
-`
+```python
+# Question 5
 
-![flow_data9_lst.png](../assignment_4/graphs/flow_data9_1st.png "All September Data 1st half")
+for i in range(1, 13):
+        print(i)
+        print(data.flow[data.month == (i)].nlargest(1))
+        print(data.year[data.flow[data.month == (i)].nlargest(1).index])
 
-![flow_data9_lst.png](../assignment_4/graphs/flow_data9_2nd.png "All September Data 2nd half")
+print('\n')
 
-`Some weird stuff right?  The first half is nothing, but that second half is fascinating.  It seems that on the 30th of September, the value center around 90 and 120, generally.  Interesting for future guesses is all.  I made some graphs just about this September too.  Not sure what you wanted here:
-`
+for i in range(1, 13):
+        print(i)
+        print(data.flow[data.month == (i)].nsmallest(1))
+        print(data.year[data.flow[data.month == (i)].nsmallest(1).index])
+```
 
-![flow_data92020_lst.png](../assignment_4/graphs/flow_data92020_1st.png "All September Data 1st half")
+**Output:**
+```
+1
+1468    63400.0
+Name: flow, dtype: float64
+1468    1993
+Name: year, dtype: int32
+2
+1511    61000.0
+Name: flow, dtype: float64
+1511    1993
+Name: year, dtype: int32
+3
+2255    30500.0
+Name: flow, dtype: float64
+2255    1995
+Name: year, dtype: int32
+4
+821    4690.0
+Name: flow, dtype: float64
+821    1991
+Name: year, dtype: int32
+5
+1246    546.0
+Name: flow, dtype: float64
+1246    1992
+Name: year, dtype: int32
+6
+1247    481.0
+Name: flow, dtype: float64
+1247    1992
+Name: year, dtype: int32
+7
+6420    1040.0
+Name: flow, dtype: float64
+6420    2006
+Name: year, dtype: int32
+8
+1330    5360.0
+Name: flow, dtype: float64
+1330    1992
+Name: year, dtype: int32
+9
+5742    5590.0
+Name: flow, dtype: float64
+5742    2004
+Name: year, dtype: int32
+10
+7949    1910.0
+Name: flow, dtype: float64
+7949    2010
+Name: year, dtype: int32
+11
+5805    4600.0
+Name: flow, dtype: float64
+5805    2004
+Name: year, dtype: int32
+12
+5842    28700.0
+Name: flow, dtype: float64
+5842    2004
+Name: year, dtype: int32
 
-![flow_data92020_lst.png](../assignment_4/graphs/flow_data92020_2nd.png "All September Data 2nd half")
 
-`It depends on how to slice the 1st and 2nd half, but at the beginning of September there was a trend downwards and then on the 9th there was a strong shift upwards do to a rainstorm.  This was followed by a trend back downwards and we seem to remain it in for now.
-`
+1
+5143    158.0
+Name: flow, dtype: float64
+5143    2003
+Name: year, dtype: int32
+2
+783    136.0
+Name: flow, dtype: float64
+783    1991
+Name: year, dtype: int32
+3
+83    97.0
+Name: flow, dtype: float64
+83    1989
+Name: year, dtype: int32
+4
+10710    64.9
+Name: flow, dtype: float64
+10710    2018
+Name: year, dtype: int32
+5
+5620    46.0
+Name: flow, dtype: float64
+5620    2004
+Name: year, dtype: int32
+6
+8581    22.1
+Name: flow, dtype: float64
+8581    2012
+Name: year, dtype: int32
+7
+8582    19.0
+Name: flow, dtype: float64
+8582    2012
+Name: year, dtype: int32
+8
+11192    29.6
+Name: flow, dtype: float64
+11192    2019
+Name: year, dtype: int32
+9
+11574    36.6
+Name: flow, dtype: float64
+11574    2020
+Name: year, dtype: int32
+10
+8677    69.9
+Name: flow, dtype: float64
+8677    2012
+Name: year, dtype: int32
+11
+10167    117.0
+Name: flow, dtype: float64
+10167    2016
+Name: year, dtype: int32
+12
+8735    155.0
+Name: flow, dtype: float64
+8735    2012
+Name: year, dtype: int32
+```
 
 6. Provide a list of historical dates with flows that are within 10% of your week 1 forecast value. If there are none than increase the %10 window until you have at least one other value and report the date and the new window you used.
 
-**Ans:**
-`
-`
+```python
+# Question 6
+my_est = 104
+ten_per = my_est*0.1
+print(ten_per)
+rnge = (my_est - ten_per, my_est + ten_per)
+print(rnge)
+print(rnge[0])
+
+# print(data.datetime[data.flow >= rnge[0]])
+# print(data.datetime[data.flow <= rnge[1]])
+
+print(data.datetime[(data.flow >= rnge[0]) & (data.flow <= rnge[1])])
+```
+
+**Output:**
+```
+10.4
+(93.6, 114.4)
+93.6
+81       1989-03-23
+82       1989-03-24
+83       1989-03-25
+96       1989-04-07
+97       1989-04-08
+            ...    
+11445    2020-05-03
+11447    2020-05-05
+11448    2020-05-06
+11449    2020-05-07
+11530    2020-07-27
+Name: datetime, Length: 1071, dtype: object
+```
 ___
 <a name="est"></a>
-## Estimation4 Explanation
+## Estimation5 Explanation
 
-For this weeks estimate (4), I decided to use and transform a prewritten python code using Visual Studio Code.  The python code section I wrote, allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
+For this weeks estimate (5), I decided to use a pandas data frames for my analysis.
+
+The python code section I wrote, allowed me to create serval histograms for all data under the flow of 400 and in the months September, October, November, and December.  By isolating this part of the total data ('flow_data'), I was able to run computations to make my predictions.  For my estimate, I took the mean of all the data in each month and also took the lowest value I could find in each months given histogram.  For example look at the chart below:
 
 ![g9](../assignment_4/graphs/g9.png "All September Data")
 

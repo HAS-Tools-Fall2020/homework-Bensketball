@@ -75,8 +75,19 @@ for i in range(1, 13):
 # %%
 # Question 4
 
-print(data.flow.nlargest(5))
-print(data.flow.nlargest(5))
+# data[["datetime",'month', 'flow']]
+# ind1 = data.flow.nlargest(5).index
+# print(ind1)
+# data[['datetime','month', 'flow'],ind1]
+print(data.datetime[data.flow.nlargest(5).index])
+print(data.month[data.flow.nlargest(5).index])
+print(data.flow[data.flow.nlargest(5).index])
+
+print(data.datetime[data.flow.nsmallest(5).index])
+print(data.month[data.flow.nsmallest(5).index])
+print(data.flow[data.flow.nsmallest(5).index])
+
+# print(data.flow.nlargest(5))
 # print(data.month[data.flow.nsmallest(5)])
 # print(data.datetime[data['flow'].nsmallest(5)])
 
@@ -87,7 +98,27 @@ print(data.flow.nlargest(5))
 for i in range(1, 13):
         print(i)
         print(data.flow[data.month == (i)].nlargest(1))
+        print(data.year[data.flow[data.month == (i)].nlargest(1).index])
+
+print('\n')
+
 for i in range(1, 13):
         print(i)
         print(data.flow[data.month == (i)].nsmallest(1))
+        print(data.year[data.flow[data.month == (i)].nsmallest(1).index])
+
+# %%
+# Question 6
+my_est = 104
+ten_per = my_est*0.1
+print(ten_per)
+rnge = (my_est - ten_per, my_est + ten_per)
+print(rnge)
+print(rnge[0])
+
+# print(data.datetime[data.flow >= rnge[0]])
+# print(data.datetime[data.flow <= rnge[1]])
+
+print(data.datetime[(data.flow >= rnge[0]) & (data.flow <= rnge[1])])
+
 # %%
