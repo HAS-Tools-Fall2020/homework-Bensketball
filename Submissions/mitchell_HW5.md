@@ -8,9 +8,10 @@ ___
 
 3/3 - Awesome work. I really like your plotting. This week we are going to talk about matplotlib so you have a great head start.
 
-One note for next time - In the md you should just include a text answer to the questions rather than copying the chunks of code. I would treat this more as the report part  as I have access to the code too. 
+One note for next time - In the md you should just include a text answer to the questions rather than copying the chunks of code. I would treat this more as the report part as I have access to the code too.
 ___
 
+*Thank you!  Sounds good for the future.  I found an HTML format that allows you to put python, in python format, into markdown files. I thought it might be easier to read the code this way. :)  For ease of grading, is it better for you if I just copy the python file (.py) into the submissions folder rather than linking it?*
 
 ___
 ### Table of Contents:
