@@ -5,7 +5,7 @@
 ___
 <a name="grd"></a>
 # ***Grade***
-3/3 - Great work!! I really like all ofyour graphs.
+3/3 - Great work!! I really like all of your graphs.
 ___
 
 
