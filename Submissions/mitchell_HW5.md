@@ -4,7 +4,11 @@
 
 ___
 <a name="grd"></a>
-# ***Grade***
+### ***Grade***
+
+3/3 - Awesome work. I really like your plotting. This week we are going to talk about matplotlib so you have a great head start.
+
+One note for next time - In the md you should just include a text answer to the questions rather than copying the chunks of code. I would treat this more as the report part  as I have access to the code too. 
 ___
 
 
