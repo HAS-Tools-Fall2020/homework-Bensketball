@@ -14,7 +14,7 @@ import datetime
 # %%
 # ** MODIFY **
 # Set the file name and path to where you have stored the data
-filename = 'streamflow_week1.txt'
+filename = 'streamflow_week6.txt'
 filepath = os.path.join('data', filename)
 print(os.getcwd())
 print(filepath)
@@ -22,6 +22,9 @@ print(filepath)
 
 # %%
 #Read the data into a pandas dataframe
+
+# del(data)
+
 data=pd.read_table(filepath, sep = '\t', skiprows=30,
         names=['agency_cd', 'site_no', 'datetime', 'flow', 'code'],
         parse_dates=['datetime']
@@ -30,14 +33,29 @@ data=pd.read_table(filepath, sep = '\t', skiprows=30,
 # Expand the dates to year month day
 data['year'] = pd.DatetimeIndex(data['datetime']).year
 data['month'] = pd.DatetimeIndex(data['datetime']).month
-data['day'] = pd.DatetimeIndex(data['datetime']).dayofweek
+data['day'] = pd.DatetimeIndex(data['datetime']).day
 data['dayofweek'] = pd.DatetimeIndex(data['datetime']).dayofweek
 
-# Aggregate flow values to weekly 
-flow_weekly = data.resample("W", on='datetime').mean()
+# print(data)
+# print(len(data))
+
+# Aggregate flow values to weekly
+# flow_weekly = data.resample("W", on='datetime').mean()
+
+# print(data[data['flow'] <= 200])
+data_200 = pd.DataFrame(data[data['flow'] <= 200])
+data_200 = data_200.set_index('datetime')
+data_200 = data_200.drop(columns=['agency_cd', 'code'])
+# print(data_200)
+
+flow_weekly = data_200
+# flow_weekly = data.resample(:, on='datetime')
+print(flow_weekly)
+
 
 # %%
-# Building an autoregressive model 
+### Ben's Code:
+# Ben's building an autoregressive model
 # You can learn more about the approach I'm following by walking 
 # Through this tutorial
 # https://realpython.com/linear-regression-in-python/
@@ -52,9 +70,12 @@ flow_weekly['flow_tm2'] = flow_weekly['flow'].shift(2)
 # Step 2 - pick what portion of the time series you want to use as training data
 # here I'm grabbing the first 800 weeks 
 # Note1 - dropping the first two weeks since they wont have lagged data
-# to go with them  
-train = flow_weekly[2:800][['flow', 'flow_tm1', 'flow_tm2']]
-test = flow_weekly[800:][['flow', 'flow_tm1', 'flow_tm2']]
+# to go with them
+trainstart = 2
+trainend = 3000
+
+train = flow_weekly[trainstart:trainend][['flow', 'flow_tm1', 'flow_tm2']]
+test = flow_weekly[trainend:][['flow', 'flow_tm1', 'flow_tm2']]
 
 # Step 3: Fit a linear regression model using sklearn 
 model = LinearRegression()
@@ -117,7 +138,7 @@ ax.set(title="Observed Flow", xlabel="Date",
 ax.legend()
 # an example of saving your figure to a file
 fig.set_size_inches(5,3)
-fig.savefig("Observed_Flow.png")
+fig.savefig("graphs/Observed_Flow_All.png")
 
 #2. Time series of flow values with the x axis range limited
 fig, ax = plt.subplots()
@@ -126,6 +147,7 @@ ax.plot(train['flow'], 'r:', label='training')
 ax.set(title="Observed Flow", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
         yscale='log', xlim=[datetime.date(2000, 1, 26), datetime.date(2014, 2, 1)])
 ax.legend()
+fig.savefig("graphs/Observed_Flow_Train.png")
 
 
 # 3. Line  plot comparison of predicted and observed flows
@@ -136,6 +158,8 @@ ax.plot(train.index, q_pred_train, color='green', linestyle='--',
 ax.set(title="Observed Flow", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
         yscale='log')
 ax.legend()
+fig.savefig("graphs/Observed_Flow_Sim.png")
+
 
 # 4. Scatter plot of t vs t-1 flow with log log axes
 fig, ax = plt.subplots()
@@ -144,6 +168,7 @@ ax.scatter(train['flow_tm1'], train['flow'], marker='p',
 ax.set(xlabel='flow t-1', ylabel='flow t', yscale='log', xscale='log')
 ax.plot(np.sort(train['flow_tm1']), np.sort(q_pred_train), label='AR model')
 ax.legend()
+fig.savefig("graphs/AR_Log.png")
 
 # 5. Scatter plot of t vs t-1 flow with normal axes
 fig, ax = plt.subplots()
@@ -152,6 +177,32 @@ ax.scatter(train['flow_tm1'], train['flow'], marker='p',
 ax.set(xlabel='flow t-1', ylabel='flow t')
 ax.plot(np.sort(train['flow_tm1']), np.sort(q_pred_train), label='AR model')
 ax.legend()
+fig.savefig("graphs/AR.png")
 
 plt.show()
 
+
+# %%
+### Semester Predictions
+# y = mx + b
+
+week_before1 = flow_weekly.loc['20200815':'20200821'].flow.mean()
+print(week_before1)
+for i in range(1,17):
+        print('week', [i])
+        pred_weeks1 = model.intercept_ + model.coef_ * week_before1
+        print(pred_weeks1)
+        week_before1 = pred_weeks1
+
+# %%
+### Finding Mondays Flow!
+# y = mx + b
+Saturdays_Flow = flow_weekly['flow'].tail(1)
+print(Saturdays_Flow)
+week_before2 = Saturdays_Flow
+for i in range(1,3):
+        print('week1', [i])
+        pred1 = model.intercept_ + model.coef_ * week_before2
+        print(pred1)
+        week_before2 = pred1
+# %%

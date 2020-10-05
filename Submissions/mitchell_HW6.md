@@ -6,7 +6,6 @@ ___
 <a name="grd"></a>
 ### ***Grade***
 
-
 ___
 ### Table of Contents:
 0. [ Grade](#grd)
@@ -20,7 +19,7 @@ ___
 <a name="qns"></a>
 ## Assignment Questions
 
-##### The Python code used to answer the questions below can be found [here](../assignment_6/week6_questions_BM.py).
+##### The Python code used to answer the questions below can be found [here](../assignment_6/week6_matplotlib_starter_BM.py).
 
 ###### Review the starter code I provided to see how to build an autoregressive(AR) model. Then build your own model, you can modify my model in any way for example changing the number of time steps used for prediction or changing the testing and training data periods. The only rule is that you must make some modifications to make the model your own.
 
@@ -29,112 +28,65 @@ ___
 1. A summary of the AR model that you ended up building, including (1) what you are using as your prediction variables, (2) the final equation for your model and (3) what you used as your testing and training periods. In your discussion please include graphical outputs that support why you made the decisions you did with your model.
 
 **Ans:**
-```
+`(1) I am using all data that had flows below 200 CFS and my "flow t-1" difference is a day.  I believed this to be the most actuate prediction method.
+`
 
-```
+`(2) "y = m * x + b" OR "y = 0.96 * x + 5.56" with an R_squared value of 0.91.
+`
+
+`(3) I choose to use every other day because I was cutting of a huge chunk of data when I restricted all flows to be under 200.  I made this choice because we seem to be in a drought right now.  The graphs below show my training period for my model and my full flow period:
+`
+
+![g-all](../assignment_6/graphs/Observed_Flow_All.png "Observed_Flow_All")
+
+![g-train](../assignment_6/graphs/Observed_Flow_Train.png "Observed_Flow_Train")
+
 
 2. Provide an analysis of your final model performance. This should include at least one graph that shows the historical vs predicted streamflow and some discussion of qualitatively how you think your model is good or bad.
 
 **Ans:**
-```
+`I think this model can be greatly improved upon.  I think next time I want to use week's average flows instead of days but I will need to write a more complicated code for this.  I found that if I cut data off at 200 CFS that I got "NaN" values because I cut rows out of my data.  I do not think this model type is good for predicting flow because of how flow data seems rather random.  I suspect that this model is only good for no more than a week in advance.  I will say that because I cut my data off at 200 CFS that I ended up with a rather nice R_squared value of 0.91 (on its way to 1.00).  My graph(s) below show my model at work:
+`
 
-```
+![g-sim](../assignment_6/graphs/Observed_Flow_Sim.png "Observed_Flow_Sim")
+
+![g-AR_Log](../assignment_6/graphs/AR_Log.png "AR_Log")
+
+![g-AR](../assignment_6/graphs/AR.png "AR")
+
 
 3. Finally, provide discussion on what you actually used for your forecast. Did you use your AR model, why or why not? If not how did you generate your forecast this week?
 
 **Ans:**
-```
-
-```
+`I went ahead and used the model to make my predictions.  However, I do not think that my current model is super accurate given the data I used.  Because I used a difference period of one day, using this model to predict weeks flows is inaccurate.  I generated my forecast by taking the formula spit out be the model "y = 0.96 * x + 5.56" and plugged in the flow over and over filling out my perditions until the end of the semester.  I used a "For" loop to do this.  The slope is positive so my predictions increase throughout the year.  Same goes for this weeks and next weeks predictions.  However, I used a different starting flow.  Using the week from 8-15-2020 to 8-21-2020, the average flow was calculated and used for my long term predictions.  This value was found to be 33.84285714285714.  For this weeks prediction, Saturday's (10/03/2020) flow was used for my iteration.
+`
 
 ___
 <a name="est"></a>
-## Estimation5 Explanation
+## Estimation6 Explanation
 
-For this weeks estimate (5), I decided to use a pandas data frames for my analysis.  With my python code, I was able to pull out and plot all data from 2010 to August 2020.  I plotted all months using a for loop, first for the months that had 31 days (set_1) and then I plotted all months that had 30 days.  February was left out, but it was a month that was not important for my analysis.  I then looked a the trends of the same months, going from graph to graph.  For example, there was a trend in November of almost always increasing from the start of the month to the end of the month.  My estimations for November mirror this trend.  The graphs are plotting the flows for April, June, September, and November.  November is plotted via a red line so you may see the trend:
-
-![g2010-2](../assignment_5/graphs/flow-set2_2010.png "2010")
-
-![g2011-2](../assignment_5/graphs/flow-set2_2011.png "2011")
-
-![g2012-2](../assignment_5/graphs/flow-set2_2012.png "2012")
-
-![g2013-2](../assignment_5/graphs/flow-set2_2013.png "2013")
-
-![g2014-2](../assignment_5/graphs/flow-set2_2014.png "2014")
-
-![g2015-2](../assignment_5/graphs/flow-set2_2015.png "2015")
-
-![g2016-2](../assignment_5/graphs/flow-set2_2016.png "2016")
-
-![g2017-2](../assignment_5/graphs/flow-set2_2017.png "2017")
-
-![g2018-2](../assignment_5/graphs/flow-set2_2018.png "2018")
-
-![g2019-2](../assignment_5/graphs/flow-set2_2019.png "2019")
-
-#### `The graph below was used for my weekl1 and week2 guesses:`
-
-![g2020-5](../assignment_5/graphs/flow-set5_2020-9.png "2020")
-
-***I gave my best estimates with the chart given above.***
+Explanation is highlighted above in the questions this week. ^^^
 
 ___
 <a name="cod"></a>
-## My Python Code(s)4:
+## My Python Code(s)6:
 
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_5/week5_pandas_starter_BM.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/week5_pandas_starter.py).
+The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_6/week6_matplotlib_starter_BM.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
 
 ___
 <a name="apd"></a>
 ## Appendices & Graphs
 Here are all the charts created with my code (there are a lot of them):
 
-![g2010-1](../assignment_5/graphs/flow-set1_2010.png "2010")
+![g-all](../assignment_6/graphs/Observed_Flow_All.png "Observed_Flow_All")
 
-![g2011-1](../assignment_5/graphs/flow-set1_2011.png "2011")
+![g-train](../assignment_6/graphs/Observed_Flow_Train.png "Observed_Flow_Train")
 
-![g2012-1](../assignment_5/graphs/flow-set1_2012.png "2012")
+![g-sim](../assignment_6/graphs/Observed_Flow_Sim.png "Observed_Flow_Sim")
 
-![g2013-1](../assignment_5/graphs/flow-set1_2013.png "2013")
+![g-AR_Log](../assignment_6/graphs/AR_Log.png "AR_Log")
 
-![g2014-1](../assignment_5/graphs/flow-set1_2014.png "2014")
-
-![g2015-1](../assignment_5/graphs/flow-set1_2015.png "2015")
-
-![g2016-1](../assignment_5/graphs/flow-set1_2016.png "2016")
-
-![g2017-1](../assignment_5/graphs/flow-set1_2017.png "2017")
-
-![g2018-1](../assignment_5/graphs/flow-set1_2018.png "2018")
-
-![g2019-1](../assignment_5/graphs/flow-set1_2019.png "2019")
-
-![g2010-2](../assignment_5/graphs/flow-set2_2010.png "2010")
-
-![g2011-2](../assignment_5/graphs/flow-set2_2011.png "2011")
-
-![g2012-2](../assignment_5/graphs/flow-set2_2012.png "2012")
-
-![g2013-2](../assignment_5/graphs/flow-set2_2013.png "2013")
-
-![g2014-2](../assignment_5/graphs/flow-set2_2014.png "2014")
-
-![g2015-2](../assignment_5/graphs/flow-set2_2015.png "2015")
-
-![g2016-2](../assignment_5/graphs/flow-set2_2016.png "2016")
-
-![g2017-2](../assignment_5/graphs/flow-set2_2017.png "2017")
-
-![g2018-2](../assignment_5/graphs/flow-set2_2018.png "2018")
-
-![g2019-2](../assignment_5/graphs/flow-set2_2019.png "2019")
-
-![g2020-3](../assignment_5/graphs/flow-set3_2020-8.png "2020")
-
-![g2020-4](../assignment_5/graphs/flow-set4_2020-6.png "2020")
-
-![g2020-5](../assignment_5/graphs/flow-set5_2020-9.png "2020")
+![g-AR](../assignment_6/graphs/AR.png "AR")
 
 ___
 <a name="cit"></a>
