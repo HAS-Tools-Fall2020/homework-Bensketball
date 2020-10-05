@@ -18,6 +18,6 @@ ___
 ## Grade:
 3/3 Nice work! (just next time get it in by noon on Monday:) )
 ___
-I plan on it! Thank you for full points and understanding! :D
+*I plan on it! Thank you for full points and understanding! :D*
 
 `~BM`
