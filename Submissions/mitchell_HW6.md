@@ -5,7 +5,9 @@
 ___
 <a name="grd"></a>
 ### ***Grade***
+3/3 - Great work. I really like all the plots you have here.
 
+Note: in the starter code I already gave you weekly averaged flows for model building so you can use that directly if you want. 
 ___
 ### Table of Contents:
 0. [ Grade](#grd)
