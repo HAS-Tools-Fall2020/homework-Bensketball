@@ -17,7 +17,7 @@ ___
 `
 Just kidding, I can walk you through what I have created here.
 
-First off, the folder you copied to your computer should be the folder titled 'Code_Review1' found in my 'Submissions' folder.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instructions on GitHub.  The website to this GitHub can be found [here](...).  If you go to this website, you will find many helpful links to run my code.  The steps are below:
+First off, the folder you copied to your computer should be the folder titled 'Code_Review1' found in my 'Submissions' folder.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instructions on GitHub.  The website to this GitHub can be found [here](../Code_Review1).  If you go to this website, you will find many helpful links to run my code.  The steps are below:
 
 Step #1: Download the daily streamflow data for station *09506000 Verde River Near Camp Verde* from the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/).  Make sure you update your end date so you are getting the latest data to help you make your short term forecasts.  
    - Parameter 00060 Discharge (mean)
