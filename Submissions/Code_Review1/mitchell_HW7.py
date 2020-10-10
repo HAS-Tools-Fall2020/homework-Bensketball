@@ -135,7 +135,7 @@ fig, ax = plt.subplots()
 ax.plot(train['log_flow'], color='grey', linewidth=2, label='observed')
 ax.plot(train.index, q_pred_train, color='green', linestyle='--',
         label='simulated')
-ax.set(title="Observed Flow", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
+ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
        yscale='log')
 ax.legend()
 fig.savefig("graphs/Observed_Log(Flow)_Sim.png")
