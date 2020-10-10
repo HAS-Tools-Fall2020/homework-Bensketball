@@ -124,7 +124,7 @@ fig, ax = plt.subplots()
 ax.plot(flow_weekly['log_flow'], label='full')
 ax.plot(train['log_flow'], 'r:', label='training')
 ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Log(Flow) [cfs]",
-       yscale='log', xlim=[datetime.date(2000, 1, 26), datetime.date(2019,
+       yscale='log', xlim=[datetime.date(2000, 1, 26), datetime.date(2020,
                                                                      2, 1)])
 ax.legend()
 fig.savefig("graphs/Observed_Log(Flow)_Train.png")
@@ -171,8 +171,8 @@ week_before = flow_weekly['log_flow'].tail(1)
 print("Last weeks's flow was", math.exp(week_before),'!', '\n')
 # Finding next weeks and next next weeks flows useing model and a fuction
 def my_prediction(x):
+        week_bef = week_before
         for i in range(1, x):
-                week_bef = week_before
                 print('week_%i:'%(i))
                 log_pred = model.intercept_ + model.coef_ * week_bef
                 pred = math.exp(log_pred)

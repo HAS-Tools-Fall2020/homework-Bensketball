@@ -2,16 +2,16 @@
 ## `10/9/2020`
 ## Code review #1
 
-### *Hello Camillo! (unless I am confused on how the GitHub chart works! XD)
+### *Hello Camillo! (unless I am confused on how the GitHub chart works! XD)  So... Hello Partner!
 
 ___
 ### Table of Contents:
-0. [ Instructions](#inst)
+0. [ Instructions](#ins)
 1. [ Your Code Review](#rev)
 2. [ My Python Code(s)](#cod)
 
 ___
-<a name="inst"></a>
+<a name="ins"></a>
 ## How to run my code:
 `Run my code! Done!
 `
@@ -28,7 +28,7 @@ Download the daily streamflow data for station *09506000 Verde River Near Camp V
 
 Save a text file in the folder titled 'data' and title this text file 'streamflow_week7.txt'.  The name chosen is critical to my code.
 
-P.S. There is already a text file titled 'streamflow_week7_temp.txt' in the 'data' folder.  This text file is missing this Saturday.  This is why you are updating the data. :)
+P.S. There is already a text file titled 'streamflow_week7_temp.txt' in the 'data' folder.  This text file is missing this Friday and Saturday.  This is why you are updating the data. :)
 
 ###### Step #2:
 Run my code.  Make sure that the filename in the beginning reads like this:
@@ -39,12 +39,20 @@ print(os.getcwd())
 print(filepath)
 ```
 
-You will get
+Also, there is something weird about my code that I should warn you about.  You may get an error that reads like the output below:
+```python
+~\miniconda3\envs\hastools\lib\site-packages\scipy\linalg\basic.py in lstsq(a, b, cond, overwrite_a, overwrite_b, check_finite, lapack_driver)
+   1221             raise LinAlgError("SVD did not converge in Linear Least Squares")
+   1222         if info < 0:
+-> 1223             raise ValueError('illegal value in %d-th argument of internal %s'
+   1224                              % (-info, lapack_driver))
+   1225         resids = np.asarray([], dtype=x.dtype)
 
 ValueError: illegal value in 4-th argument of internal None
+```
+If you get this type of error, just run the code a second time.  I have been getting this error every other time I run my code, but it seems to fix itself every time I run it a second time.  I hope it does not effect your ability to use the code.
 
-
-~ Thank you!
+~ Thank you!  Please grade my code in the section below:
 ___
 <a name="rev"></a>
 ### Your Code Review
@@ -67,6 +75,10 @@ ___
 
 5. Enter all four values (the two regression forecasts and the two forecast values into the ReadMe.md file of your partners repo.
 
+  My regression forecasts are the same as my forecast values!  Please just right each number twice. :)
+
+  ***Regression Forecasts:***
+
   **Ans1**
   `
   `
@@ -74,6 +86,8 @@ ___
   **Ans2**
   `
   `
+
+  ***Forecast Values:***
 
   **Ans3**
   `
@@ -85,39 +99,17 @@ ___
 
 6. Enter the two forecast values into the lastname.csv file for your partner. Remember you are entering their forecast for them this week, not your own!
 
+My excel is titled *'mitchell.csv'*.  It can be found [here](https://github.com/HAS-Tools-Fall2020/forecasting/tree/master/forecast_entries) or [here](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) for your convenience.
+
 ___
 <a name="cod"></a>
 ## My Python Code(s):
 
-##### The Python code can be found [here](../Code_Review1/mitchell_HW7.py).  It can also be found the folder you downloaded.
+##### The Python code can be found [here](../Code_Review1/mitchell_HW7.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
 
 
-
-
-___
-<a name="cod"></a>
-## My Python Code(s)6:
-
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../assignment_6/week6_matplotlib_starter_BM.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
-
-___
-<a name="apd"></a>
-## Appendices & Graphs
-Here are all the charts created with my code (there are a lot of them):
-
-![g-all](../assignment_6/graphs/Observed_Flow_All.png "Observed_Flow_All")
-
-![g-train](../assignment_6/graphs/Observed_Flow_Train.png "Observed_Flow_Train")
-
-![g-sim](../assignment_6/graphs/Observed_Flow_Sim.png "Observed_Flow_Sim")
-
-![g-AR_Log](../assignment_6/graphs/AR_Log.png "AR_Log")
+Finally, if the code works there should be a graph below:
 
 ![g-AR](../assignment_6/graphs/AR.png "AR")
 
-___
-<a name="cit"></a>
-## Works Cited:
-
-[My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 5 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  
 ###### ~Thank you!
