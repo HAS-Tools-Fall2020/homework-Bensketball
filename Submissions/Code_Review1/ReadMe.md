@@ -105,11 +105,11 @@ ___
 <a name="cod"></a>
 ## My Python Code(s):
 
-##### The Python code can be found [here](../Code_Review1/mitchell_HW7.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
+##### The Python code can be found [here](../Code_Review1/mitchell_HW7.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
 
 
 Finally, if the code works there should be a graph below:
 
-![g-AR](../assignment_6/graphs/AR.png "AR")
+![g-AR](../Code_Review1/graphs/AR.png "AR")
 
 ###### ~Thank you!
