@@ -2,29 +2,34 @@
 ## `10/9/2020`
 ## Code review #1
 
-## Hello Camillo! (unless I am confused XD)
+### *Hello Camillo! (unless I am confused on how the GitHub chart works! XD)
 
 ___
 ### Table of Contents:
 0. [ Instructions](#inst)
 1. [ Your Code Review](#rev)
-2. [ Python Code(s)](#cod)
-
-4. [ Appendices & Graphs](#apd)
-5. [ Works Cited](#cit)
+2. [ My Python Code(s)](#cod)
 
 ___
 <a name="inst"></a>
 ## How to run my code:
-`Run my code!
+`Run my code! Done!
 `
-Just kidding, I can walk you though what I have created here.
+Just kidding, I can walk you through what I have created here.
 
-First off, the folder you copied to your computer should be the folder titled 'Code_Review1'.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instruction of GitHub.  The website to this GitHub can be found [here](https://github.com/HAS-Tools-Fall2020/homework-Bensketball/tree/master/Submissions/Code_Review1)
+First off, the folder you copied to your computer should be the folder titled 'Code_Review1' found in my 'Submissions' folder.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instructions on GitHub.  The website to this GitHub can be found [here](...).  If you go to this website, you will find many helpful links to run my code.  The steps are below:
+
+Step #1: Download the daily streamflow data for station *09506000 Verde River Near Camp Verde* from the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/).  Make sure you update your end date so you are getting the latest data to help you make your short term forecasts.  
+   - Parameter 00060 Discharge (mean)
+   - Start date = 1989-01-01
+   - End date = 2020-10-10
+   - Select 'tab separated'
+
 ___
 <a name="rev"></a>
 ### Your Code Review
-##### Fill in the question below from GitHub assignment:
+##### Fill in the question below from GitHub assignment.
+##### *Feel free to change up this space for your review of my code!  You do not need to follow my formatting.
 
 1. First check below to see who your partner is.
 
@@ -141,5 +146,5 @@ ___
 <a name="cit"></a>
 ## Works Cited:
 
-[My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 5 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
+[My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 5 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  
 ###### ~Thank you!
