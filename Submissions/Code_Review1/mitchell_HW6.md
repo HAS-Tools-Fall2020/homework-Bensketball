@@ -20,11 +20,11 @@ ___
 `
 Just kidding, I can walk you though what I have created here.
 
-First off, the folder you copied to your computer should be the folder titled 'Code_Review1'.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instruction of GitHub.  The website to this GitHub can be found [here]()
+First off, the folder you copied to your computer should be the folder titled 'Code_Review1'.  Contained in this folder is my python code title 'mitchell_HW7.py' via the instruction of GitHub.  The website to this GitHub can be found [here](https://github.com/HAS-Tools-Fall2020/homework-Bensketball/tree/master/Submissions/Code_Review1)
 ___
 <a name="rev"></a>
 ### Your Code Review
-###### Fill in the question below from GitHub assignment:
+##### Fill in the question below from GitHub assignment:
 
 1. First check below to see who your partner is.
 
