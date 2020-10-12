@@ -69,7 +69,7 @@ ___
 
   **Code Review by Camilo Salcedo**
 
-  Hi Ben. Thank you for your straightforward and complete instructions. You can find my review for your code below, and the forecasted values in the section you defined also below. It was a very nice to review your code :) .
+  Hi Ben. Thank you for your straightforward and complete instructions. You can find my review for your code below, and the forecasted values in the section you defined also below. It was very nice to review your code :) .
 
   *General Comments*
 
@@ -85,7 +85,7 @@ ___
 
   - You created a function to perform the forecasts, using the use of a loop, which was really good. However, you didn't use the corresponding doc-strings to documentate the function.
 
-  - In your code, I changed your datafile name to ''streamflow_week7.txt' in line 22 according to your instructions. In addition, I created the folder _graphs_ because it didn't exist in your Submissions folder. 
+  - In your code, I changed your datafile name to ''streamflow_week7.txt' in line 22 according to your instructions. In addition, I created the folder _graphs_ because it didn't exist in your Submissions folder.
 
   *Additional Ideas and Improvement Opportunities in Coding*
   Some ideas and tips that could help you to improve your code are described below:
