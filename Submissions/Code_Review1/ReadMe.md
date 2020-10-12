@@ -135,10 +135,12 @@ ___
 
   *Review Rubric*
 
-  | *Criteria*  | *Points* | *Comments* |
-  | *Readability* | 2  |You didn't use any Doc-strings. For the rest, your code was very readable.|
-  | *Style*| 3 |You used PEP8 Standards. Please take a look on some minor situations in which PEP8 were not used accurately described above.|
-  | *Code Awesome*| 3 |Your code was succint, clean and pretty easy to understand and execute.  |
+| *Criteria*     | *Points* | *Comments*                                                                                                                   |
+| -------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| *Readability*  | 2        | You didn't use any Doc-strings. For the rest, your code was very readable.                                                   |
+| *Style*        | 3        | You used PEP8 Standards. Please take a look on some minor situations in which PEP8 were not used accurately described above. |
+| *Code Awesome* | 3        | Your code was succint, clean and pretty easy to understand and execute.                                                      |
+
 
 4. Follow the instructions they have provided in their ReadMe.md file to run their script and generate their 4 forecast values.
 
@@ -148,11 +150,13 @@ ___
 
   ***Regression Forecasts:***
 
-  |  | Regression Forecasts | Forecast Values|
-  |  Week # 1 | 70.38075136717578|70.38|
-  |  Week # 2 | 77.9522111429154 |77.95|
+|          | *Regression Forecasts* | *Forecast Values* |
+| -------- | ---------------------- | ----------------- |
+| *Week 1* | 70.38075136717578      | 70.38             |
+| *Week 2* | 77.9522111429154       | 77.95             |
 
-##### Ben: I rounded your forecast to two decimal places.
+
+_*Ben: I rounded your forecast to two decimal places.*_
 
 6. Enter the two forecast values into the lastname.csv file for your partner. Remember you are entering their forecast for them this week, not your own!
 
