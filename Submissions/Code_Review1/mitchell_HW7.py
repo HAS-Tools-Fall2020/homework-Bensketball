@@ -19,7 +19,7 @@ import math
 # %%
 # Set the file name and path to where you have stored the data
 # Make sure you are in the correct folder!!! ~BM
-filename = 'streamflow_week7_temp.txt'
+filename = 'streamflow_week7.txt'
 filepath = os.path.join('data', filename)
 print(os.getcwd())
 print(filepath)
