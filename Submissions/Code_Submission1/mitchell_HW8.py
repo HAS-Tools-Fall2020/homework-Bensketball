@@ -119,7 +119,7 @@ ax.set(title="Observed Log(Flow)", xlabel="Date",
 ax.legend()
 # An example of saving your figure to a file
 fig.set_size_inches(6, 4.5)
-fig.savefig("graphs/Observed_Log(Flow)_All.png")
+fig.savefig("graphs/Observed_Log-Flow_All.png")
 
 
 # 2. Time series of flow values with the x axis range limited
@@ -130,7 +130,7 @@ ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Log(Flow) [
        yscale='log', xlim=[datetime.date(2000, 1, 26), datetime.date(2020,
                                                                      2, 1)])
 ax.legend()
-fig.savefig("graphs/Observed_Log(Flow)_Train.png")
+fig.savefig("graphs/Observed_Log-Flow_Train.png")
 
 
 # 3. Line  plot comparison of predicted and observed flows
@@ -141,7 +141,7 @@ ax.plot(train.index, q_pred_train, color='green', linestyle='--',
 ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
        yscale='log')
 ax.legend()
-fig.savefig("graphs/Observed_Log(Flow)_Sim.png")
+fig.savefig("graphs/Observed_Log-Flow_Sim.png")
 
 
 # 4. Scatter plot of t vs t-1 flow with log log axes
