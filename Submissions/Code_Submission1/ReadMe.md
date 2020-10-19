@@ -59,7 +59,7 @@ ___
 <a name="cod"></a>
 ## My Python Code(s):
 
-##### The Python code can be found [here](../Code_Submission1 mitchell_HW8.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
+##### The Python code can be found [here](mitchell_HW8.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
 
 ___
 <a name="apd"></a>
