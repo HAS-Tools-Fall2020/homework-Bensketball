@@ -171,8 +171,10 @@ plt.show()
 # Finding the average of last weeks Flow, followed by the predictions.
 # y = mx + b
 
-# Finding next weeks and next next weeks flows using model outputs
-# and my function:
+# This is my fucntion:
+# The inputs are the weeks to want to predict out,
+# a known weekly average flow you want to start your predictions with,
+# and a list of dates these prediction are for.
 def my_predictions(weeks, week_b4, forecast_weeks):
        week_b4_i = week_b4
        my_pred_i = np.zeros((weeks, 1))
@@ -192,6 +194,8 @@ print("Last weeks's flow was", math.exp(week_before_flow),'cfs!', '\n')
 # Defining prediction weeks for my 2 week predictions.
 forecast_week_1_2 = ['2020-10-18','2020-10-25']
 
+# Finding next weeks and next next weeks flows using model outputs
+# and my function:
 # The number chosen for the function named "my_prediction", was "3".
 # This is because we want to predict next weeks flow and next next weeks flow.
 my_predictions(2, week_before_flow, forecast_week_1_2)

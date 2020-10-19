@@ -1,17 +1,91 @@
-# Benjamin Mitchell's Code (Bensketball)
-## `10/9/2020`
-## Code review #1
+# ***Benjamin Mitchell's Code (Bensketball)***
+## `10/18/2020`
+## Code Submission  #1
 
-### *Hello Camillo! (unless I am confused on how the GitHub chart works! XD)  So... Hello Partner!
+___
+<a name="grd"></a>
+### ***Grade***
+You can find the rubric [here!](https://github.com/HAS-Tools-Fall2020/Course_Materials/blob/master/Assignments/Starter_Codes/assets/code_review_rubric-ff0ecab3.png)
+
+
 
 ___
 ### Table of Contents:
-0. [ Instructions](#ins)
-1. [ Your Code Review](#rev)
+0. [ Grade](#grd)
+1. [ Questions](#qns)
 2. [ My Python Code(s)](#cod)
+3. [ Appendices & Graphs](#apd)
+4. [ Works Cited](#cit)
+
+##### Given to Partner last week:
+5. [ Instructions](#ins)
+6. [ Partner's Code Review](#rev)
 
 ___
+<a name="qns"></a>
+## Assignment Questions
+1. A brief summary of the AR model you built and why. Use whatever graphs you find helpful.
+
+  **Ans:**
+
+  `In this AR model, the log of flow was used to predict future flow rather than directly using the flow data.  This was done because I found that the simulated flow got closer to modeling the real flow values when using log of flows.  This increased my coefficient of determination to '0.776843' where before it was stuck under 0.70.  Whether this increases the accuracy of the model remains to be seen.
+  `
+
+2. An explanation of how you generated your forecasts and why (i.e. did you use your AR model or not?)
+
+  **Ans:**
+
+  `I used the AR predictions, as my predictions, to better understand the function I created and make it run smoother for the 16 week predictions.  I am really interested in understanding GUI's and the presentation of data with the click of a button. :)  With my function, I was able to produce my 2 week predictions and my 16 week predictions.  I wanted to use the models predictions because I am proud of my function.
+  `
+
+3. A brief summary of what you got out of the peer evaluation. How did you make your script better?
+
+  **Ans:**
+
+  `Camilo gave me a lot of help with my code!  He had great ideas for how to better my code and I took most of his ideas.  As a result, my function's output is much more readable.  I included his review of my code at the bottom if you needed it for reference.  There is an error that comes up in my code every other time it has been run and I have not been able to solve it.  I believe it to be something to do with overwriting the data frame that then fixes itself once run a second time.  My instructions to Camilo includes the problem.  The oscillation of the error is interesting.
+  `
+
+  `Anyway, Camilo did such a great job!  His review was thorough and clear so I could fix what needed to be fixed with little difficulty.
+  `
+
+4. Describe the part of your script that you are most proud of and why.
+
+  **Ans:**
+
+  `If I had to choose I would say my function works like a dream.  You give it the weeks to want to predict out, a known weekly average flow you want to start your predictions with and a list of dates these predictions are for.  The output will print you a data frame with the predicted values with the respected weeks the predictions are for as the indexes.
+  `
+
+___
+<a name="cod"></a>
+## My Python Code(s):
+
+##### The Python code can be found [here](../Code_Submission1 mitchell_HW8.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
+
+___
+<a name="apd"></a>
+## Appendices & Graphs
+Here are all the charts created with my code (there are a lot of them):
+
+![g-all](graphs/Observed_Log-Flow_All.png "Observed_Flow_All")
+
+![g-train](graphs/Observed_Log-Flow_Train.png "Observed_Flow_Train")
+
+![g-sim](graphs/Observed_Log-Flow_Sim.png "Observed_Flow_Sim")
+
+![g-AR_Log](graphs/AR_Log.png "AR_Log")
+
+![g-AR](graphs/AR.png "AR")
+
+___
+<a name="cit"></a>
+## Works Cited:
+
+[My estimate,](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) given in row 5 of *mitchell.csv*, was estimated by the creation and application of the python code presented above.  The data used for this estimate was obtained via the USGS NWIS [mapper](https://maps.waterdata.usgs.gov/mapper/) for the gage number 09506000.
+
+___
+___
 <a name="ins"></a>
+# **Instructions**
 ## How to run my code:
 `Run my code! Done!
 `
@@ -161,13 +235,6 @@ _*Ben: I rounded your forecast to two decimal places.*_
 6. Enter the two forecast values into the lastname.csv file for your partner. Remember you are entering their forecast for them this week, not your own!
 
 My excel is titled *'mitchell.csv'*.  It can be found [here](https://github.com/HAS-Tools-Fall2020/forecasting/tree/master/forecast_entries) or [here](https://github.com/HAS-Tools-Fall2020/forecasting/blob/master/forecast_entries/mitchell.csv) for your convenience.
-
-___
-<a name="cod"></a>
-## My Python Code(s):
-
-##### The Python code can be found [here](../Code_Review1/mitchell_HW7.py).  It can also be found the folder you downloaded.  It was derived from this code [here](../../Orig_Starter_Codes_BM/week6_matplotlib_starter.py).
-
 
 Finally, if the code works there should be a graph below:
 
