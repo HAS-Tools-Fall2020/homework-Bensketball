@@ -49,7 +49,7 @@ flow_weekly = data.resample("W", on='datetime').mean()
 # As an added bonus I am taking the log of the data
 # because it fits the model better with all data included
 flow_weekly.insert(2, 'log_flow', np.log(flow_weekly['flow']), True)
-print(flow_weekly)
+# print(flow_weekly)
 
 
 # %%
@@ -171,29 +171,30 @@ plt.show()
 # Finding the average of last weeks Flow, followed by the predictions.
 # y = mx + b
 
-# Geting last weeks flow.
-week_before = flow_weekly['log_flow'].tail(1)
-print("Last weeks's flow was", math.exp(week_before),'cfs!', '\n')
-
-# Prediction weeks for 2 week prediction
-forecast_week_1_2 = ['2020-10-18','2020-10-25']
-
-# Finding next weeks and next next weeks flows using model and a function.
-def my_prediction(x, week_b4, forecast_weeks):
+# Finding next weeks and next next weeks flows using model outputs
+# and my function:
+def my_predictions(weeks, week_b4, forecast_weeks):
        week_b4_i = week_b4
-       my_pred_i = np.zeros(((x-1), 1))
-       for i in range(1, x):
+       my_pred_i = np.zeros((weeks, 1))
+       for i in range(1, weeks+1):
               log_flow_pred_i = model.intercept_ + model.coef_ * week_b4_i
               flow_pred_i = math.exp(log_flow_pred_i)
               my_pred_i[i-1] = flow_pred_i
               week_b4_i = log_flow_pred_i
-       my_predictions = pd.DataFrame(my_pred_i, index = forecast_weeks,
+       my_prediction = pd.DataFrame(my_pred_i, index = forecast_weeks,
                               columns=["Predicted_Flows:"])
-       print(my_predictions, '\n')
+       print(my_prediction, '\n')
+
+# Geting last weeks flow.
+week_before_flow = flow_weekly['log_flow'].tail(1)
+print("Last weeks's flow was", math.exp(week_before_flow),'cfs!', '\n')
+
+# Defining prediction weeks for my 2 week predictions.
+forecast_week_1_2 = ['2020-10-18','2020-10-25']
 
 # The number chosen for the function named "my_prediction", was "3".
 # This is because we want to predict next weeks flow and next next weeks flow.
-my_prediction(3, week_before, forecast_week_1_2)
+my_predictions(2, week_before_flow, forecast_week_1_2)
 
 # This is where I get make my 16-week predictions using the function:
 # 'my_prediction'
@@ -205,9 +206,9 @@ forecast_week_1_thru_16 = ['2020-08-22','2020-08-30','2020-09-06','2020-09-13',
                            '2020-11-15','2020-11-22','2020-11-29','2020-12-06']
 
 # Getting the first weekly average flow of the semester!
-week_start = flow_weekly.loc['2020-08-16'][['log_flow']]
-print("First flow of the semester was", math.exp(week_start),'cfs!', '\n')
+week_start_flow = flow_weekly.loc['2020-08-16'][['log_flow']]
+print("First flow of the semester was", math.exp(week_start_flow),'cfs!', '\n')
 
 # Running the program for 16 weeks out.
-my_prediction(17, week_start, forecast_week_1_thru_16)
+my_predictions(16, week_start_flow, forecast_week_1_thru_16)
 # %%
