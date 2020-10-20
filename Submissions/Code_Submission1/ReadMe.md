@@ -7,6 +7,14 @@ ___
 ### ***Grade***
 You can find the rubric [here!](https://github.com/HAS-Tools-Fall2020/Course_Materials/blob/master/Assignments/Starter_Codes/assets/code_review_rubric-ff0ecab3.png)
 
+ - 6/6  Great  job!
+ - Readability: 2
+ - Style: 3 
+ - Code: 3
+
+ - Really nice work. I like your function and how you able to do your 16 week forecast so cleanly. 
+ - Next time just add docstrings. 
+
 
 
 ___

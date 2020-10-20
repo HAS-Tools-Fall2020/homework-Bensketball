@@ -68,6 +68,7 @@ flow_weekly['log_flow_tm2'] = flow_weekly['log_flow'].shift(shifts[1])
 
 # Step 2: Pick what portion of the time series you want to use as training data
 # here I'm grabbing the weeks for my training period.
+# LC nice  job defining these as variables -- one suggestion would be to move user defined variables to the top
 trainstart = '2016-01-01'
 trainend = '2019-12-31'
 print('trainstart', trainstart)
@@ -81,6 +82,7 @@ test = flow_weekly[trainend:][['log_flow',
                                'log_flow_tm1', 'log_flow_tm2']]
 
 # Step 3: Fit a linear regression model using sklearn
+# LC- From here to line 98 would make a nice function :) 
 model = LinearRegression()
 x = train['log_flow_tm1'].values.reshape(-1, 1)
 # See the tutorial to understand the reshape step here
@@ -171,6 +173,8 @@ plt.show()
 # Finding the average of last weeks Flow, followed by the predictions.
 # y = mx + b
 
+# LC - Great function! You should define it at the top of your script though
+# also it could use doc strings. 
 # This is my fucntion:
 # The inputs are the weeks to want to predict out,
 # a known weekly average flow you want to start your predictions with,
@@ -202,6 +206,7 @@ my_predictions(2, week_before_flow, forecast_week_1_2)
 
 # This is where I get make my 16-week predictions using the function:
 # 'my_prediction'
+# lc - Great job!
 
 # These are the weeks we will be predicting for my 16 week prediction.
 forecast_week_1_thru_16 = ['2020-08-22','2020-08-30','2020-09-06','2020-09-13',
