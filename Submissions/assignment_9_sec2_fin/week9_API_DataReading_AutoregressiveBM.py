@@ -283,6 +283,13 @@ weekly_precip_sum = precip_data.resample("W", on='datetime').sum()
 
 
 # %%
+# Creating precipitation data for above training period from the flow data
+prd_avg = weekly_precip_avg[trainstart:trainend][['precip']]
+prd_sum = weekly_precip_sum[trainstart:trainend][['precip']]
+
+# print(prd_avg)
+# print(prd_sum)
+
 # Bar Graph for precipitation data(s)
 fig, ax = plt.subplots()
 ax.bar(prd_avg.index, prd_avg['precip'], color='red', width = 3, label='precip_avg')
@@ -298,13 +305,6 @@ fig.savefig("graphs/Observed_Flow_and_Precip_Bar.png")
 train['flow'] = train.log_flow.apply(np.exp)
 # print(type(q_pred_train))
 # print(train)
-
-# Creating precipitation data for above training period from the flow data
-prd_avg = weekly_precip_avg[trainstart:trainend][['precip']]
-prd_sum = weekly_precip_sum[trainstart:trainend][['precip']]
-
-# print(prd_avg)
-# print(prd_sum)
 
 # Line plot comparison of predicted and observed flows with yscale = 'log'
 fig, axs = plt.subplots(2)
