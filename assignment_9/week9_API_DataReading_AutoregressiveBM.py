@@ -1,4 +1,4 @@
-# Baby's first autoregressive model
+# Baby's second autoregressive model
 # How to build an AR model, plot it
 # and use it for my prediction
 
@@ -8,48 +8,61 @@
 # %%
 # Import the modules we will use
 import os
+import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
 import datetime
-import math
+from sklearn.linear_model import LinearRegression
+import json 
+import urllib.request as req
+import urllib
+# import eval_fuctions as ef
+# import dataretrieval.nwis as nwis
+# could not find packages?
 
 
 # %%
-# Set the file name and path to where you have stored the data
-# Make sure you are in the correct folder!!! ~BM
-filename = 'streamflow_week8.txt'
-filepath = os.path.join('../../assignment_8/data', filename)
-print(os.getcwd())
-print(filepath)
+# Find the data you want to use from the USGS Website
+# Site number for Verde River Near Camp Verde
+site = '09506000'
+start = '1989-01-01'
+end = '2020-10-24'
+url = "https://waterdata.usgs.gov/nwis/dv?cb_00060=on&format=rdb&site_no=" + site + \
+      "&referred_module=sw&period=&begin_date=" + start + "&end_date=" + end
+
+# Read the data from dictionary into a pandas dataframe
+flow_data = pd.read_table(url, skiprows=30,
+                              names=['agency_cd', 'site_no',
+                                     'datetime', 'flow', 'code'],
+                              parse_dates=['datetime'])
+
+# print(url)
+# print(type(flow_data))
+# print(flow_data)
+# flow_data.keys()
 
 
 # %%
 # Turn on an off the line below to delete the pandas frame
 # called 'Data' if you need to reset the data
-# del(data)
+# del(flow_data)
 # turn on the line above if 'data' needs to be reset
 # turn of when 'data' does not exist
 
-# Read the data into a pandas dataframe
-data = pd.read_table(filepath, sep='\t', skiprows=30,
-                     names=['agency_cd', 'site_no', 'datetime', 'flow',
-                            'code'], parse_dates=['datetime']
-                    )
-
 # Expand the dates to year month day
-data['year'] = pd.DatetimeIndex(data['datetime']).year
-data['month'] = pd.DatetimeIndex(data['datetime']).month
-data['day'] = pd.DatetimeIndex(data['datetime']).day
-data['dayofweek'] = pd.DatetimeIndex(data['datetime']).dayofweek
+flow_data['year'] = pd.DatetimeIndex(flow_data['datetime']).year
+flow_data['month'] = pd.DatetimeIndex(flow_data['datetime']).month
+flow_data['day'] = pd.DatetimeIndex(flow_data['datetime']).day
+flow_data['dayofweek'] = pd.DatetimeIndex(flow_data['datetime']).dayofweek
 
 # Aggregate flow values to weekly
-flow_weekly = data.resample("W", on='datetime').mean()
+flow_weekly = flow_data.resample("W", on='datetime').mean()
 # As an added bonus I am taking the log of the data
 # because it fits the model better with all data included
 flow_weekly.insert(2, 'log_flow', np.log(flow_weekly['flow']), True)
 # print(flow_weekly)
+# print(type(flow_weekly['log_flow']))
 
 
 # %%
@@ -142,6 +155,7 @@ ax.plot(train.index, q_pred_train, color='green', linestyle='--',
         label='simulated')
 ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
        yscale='log')
+ax.tick_params(axis='x', labelrotation=70)
 ax.legend()
 fig.savefig("graphs/Observed_Log-Flow_Sim.png")
 
@@ -168,6 +182,7 @@ fig.savefig("graphs/AR.png")
 plt.show()
 
 # All graphs are saved in the folder called 'graphs'.
+
 
 # %%
 # Finding the average of last weeks Flow, followed by the predictions.
@@ -220,4 +235,83 @@ print("First flow of the semester was", math.exp(week_start_flow),'cfs!', '\n')
 
 # Running the program for 16 weeks out.
 my_predictions(16, week_start_flow, forecast_week_1_thru_16)
+
+
+# %%
+# Daymet Example:
+# You can get Daymet data for a single pixle form this site:
+# https: // daymet.ornl.gov/single-pixel/ 
+# You can also experiment with their API Here: 
+# https: // daymet.ornl.gov/single-pixel/api
+
+# Example reading it as a json file
+url = "https://daymet.ornl.gov/single-pixel/api/data?lat=34.9455&lon=-113.2549"  \
+       "&vars=prcp&start=" + start + "&end=" + end + "&format=json"
+response = req.urlopen(url)
+# print(response, '\n')
+print(url, '\n')
+print(trainstart, trainend, '\n')
+
+# Look at the kesy and use this to grab out the data
+responseDict = json.loads(response.read())
+responseDict['data'].keys()
+year = responseDict['data']['year']
+yearday = responseDict['data']['yday']
+precip = responseDict['data']['prcp (mm/day)']
+
+# make a dataframe from the data
+precip_data = pd.DataFrame({'year': year,
+                     'yearday': yearday, "precip": precip})
+
+week_precip_data = precip_data.nth(7, dropan).sum
+
+# weekly_percip_data = precip[6:-6]
+# weekly_percip_data = np.array(weekly_percip_data)
+# weekly_rain_avg = np.average(weekly_percip_data.resize(7,2084),axis=0)
+
+# test = precip_data.rolling(window = 7).mean()
+# print(precip_data)
+
+# daysoftheweek = [0, 1, 2, 3, 4, 5, 6]
+# precip_data['daysoftheweek'] = daysoftheweek
+
+# daysofweek_precip = np.repeat(np.arange(14600)[:,np.newaxis],14600,axis=1)
+# precip_data['daysofweek_precip'] = daysofweek_precip
+
+# flow_data['year'] = pd.DatetimeIndex(flow_data['datetime']).year
+# flow_data['month'] = pd.DatetimeIndex(flow_data['datetime']).month
+# flow_data['day'] = pd.DatetimeIndex(flow_data['datetime']).day
+# flow_data['dayofweek'] = pd.DatetimeIndex(flow_data['datetime']).dayofweek
+
+# precip_data = precip_data.resample(7, on='precip')
+#%%
+train['flow'] = train.log_flow.apply(np.exp)
+# print(type(q_pred_train))
+print(train)
+
+# Line  plot comparison of predicted and observed flows
+fig, axs = plt.subplots(2)
+axs[0].plot(train['flow'], color='grey', linewidth=2, label='observed')
+axs[0].plot(train.index, np.exp(q_pred_train), color='green', linestyle='--',
+        label='simulated')
+axs[0].set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
+       yscale='log')
+axs[0].tick_params(axis='x', labelrotation=70)
+axs[0].legend()
+
+# fig.savefig("graphs/Observed_Log-Flow_and_Precip.png")
+
+# %%
+# Line  plot comparison of predicted and observed flows
+precip_data[['precip']].plot(kind='bar', width = 0.35)
+precip_data['precip'].plot(secondary_y=True)
+
+fig5 = []
+ax.plot(train['flow'], color='grey', linewidth=2, label='observed')
+ax.plot(train.index, np.exp(q_pred_train), color='green', linestyle='--',
+        label='simulated')
+ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
+       yscale='log')
+axs[0].tick_params(axis='x', labelrotation=70)
+axs[0].legend()
 # %%
