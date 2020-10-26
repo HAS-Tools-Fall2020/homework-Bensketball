@@ -37,7 +37,7 @@ flow_data = pd.read_table(url, skiprows=30,
                                      'datetime', 'flow', 'code'],
                               parse_dates=['datetime'])
 
-# print(url)
+print(url)
 # print(type(flow_data))
 # print(flow_data)
 # flow_data.keys()
@@ -261,57 +261,118 @@ precip = responseDict['data']['prcp (mm/day)']
 
 # make a dataframe from the data
 precip_data = pd.DataFrame({'year': year,
-                     'yearday': yearday, "precip": precip})
+                            'yearday': yearday, "precip": precip})
 
-week_precip_data = precip_data.nth(7, dropan).sum
 
-# weekly_percip_data = precip[6:-6]
-# weekly_percip_data = np.array(weekly_percip_data)
-# weekly_rain_avg = np.average(weekly_percip_data.resize(7,2084),axis=0)
+# %%
+# 
+precip_data["year"] = precip_data["year"].astype(str)
+precip_data["yearday"] = precip_data["yearday"].astype(str)
+precip_data["year"] = precip_data["year"].str.slice(0, -2)
+precip_data["yearday"] = precip_data["yearday"].str.slice(0, -2)
+precip_data["date"] = precip_data["year"].str.cat(precip_data["yearday"], sep = ' ')
+precip_data['datetime'] = pd.to_datetime(precip_data.date, format='%Y %j')
 
-# test = precip_data.rolling(window = 7).mean()
-# print(precip_data)
+# Create day of the week coulmn and resample for weeks
+precip_data['dayofweek'] = pd.DatetimeIndex(precip_data['datetime']).dayofweek
+weekly_precip_avg = precip_data.resample("W", on='datetime').mean()
+weekly_precip_sum = precip_data.resample("W", on='datetime').sum()
 
-# daysoftheweek = [0, 1, 2, 3, 4, 5, 6]
-# precip_data['daysoftheweek'] = daysoftheweek
+# print(weekly_precip_avg)
+# print(weekly_precip_sum)
 
-# daysofweek_precip = np.repeat(np.arange(14600)[:,np.newaxis],14600,axis=1)
-# precip_data['daysofweek_precip'] = daysofweek_precip
 
-# flow_data['year'] = pd.DatetimeIndex(flow_data['datetime']).year
-# flow_data['month'] = pd.DatetimeIndex(flow_data['datetime']).month
-# flow_data['day'] = pd.DatetimeIndex(flow_data['datetime']).day
-# flow_data['dayofweek'] = pd.DatetimeIndex(flow_data['datetime']).dayofweek
+# %%
+# Bar Graph for precipitation data(s)
+fig, ax = plt.subplots()
+ax.bar(prd_avg.index, prd_avg['precip'], color='red', width = 3, label='precip_avg')
+ax.bar(prd_sum.index, prd_sum['precip'], color='blue', width = 3, label='precip_sum')
+ax.set(title="Precipitation", xlabel="Date", ylabel="Weekly Precipitaion")
+ax.tick_params(axis='x', labelrotation=70)
+ax.legend()
 
-# precip_data = precip_data.resample(7, on='precip')
+fig.savefig("graphs/Observed_Flow_and_Precip_Bar.png")
+
 #%%
+# # Creating better flow data for above training period
 train['flow'] = train.log_flow.apply(np.exp)
 # print(type(q_pred_train))
-print(train)
+# print(train)
 
-# Line  plot comparison of predicted and observed flows
+# Creating precipitation data for above training period from the flow data
+prd_avg = weekly_precip_avg[trainstart:trainend][['precip']]
+prd_sum = weekly_precip_sum[trainstart:trainend][['precip']]
+
+# print(prd_avg)
+# print(prd_sum)
+
+# Line plot comparison of predicted and observed flows with yscale = 'log'
 fig, axs = plt.subplots(2)
 axs[0].plot(train['flow'], color='grey', linewidth=2, label='observed')
 axs[0].plot(train.index, np.exp(q_pred_train), color='green', linestyle='--',
-        label='simulated')
-axs[0].set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
-       yscale='log')
+            label='simulated')
+axs[0].set(title="Observed Flow", xlabel="Date",
+           ylabel="Weekly Avg Flow [cfs]", yscale='log')
 axs[0].tick_params(axis='x', labelrotation=70)
 axs[0].legend()
 
-# fig.savefig("graphs/Observed_Log-Flow_and_Precip.png")
+# Line plot comparison of weekly average precipitation
+# and weekly cumulative precipitation
+
+axs[1].plot(prd_avg.index, prd_avg['precip'], color='red', linewidth=2,
+            label='precip_avg')
+axs[1].plot(prd_sum.index, prd_sum['precip'], color='blue', linewidth=2,
+            label='precip_sum')
+axs[1].set(title="Observed Precipitaion", xlabel="Date",
+           ylabel="Weekly Precipitaion")
+axs[1].tick_params(axis='x', labelrotation=70)
+axs[1].legend()
+
+fig.savefig("graphs/Observed_Log_Flow_and_Precip.png")
 
 # %%
-# Line  plot comparison of predicted and observed flows
-precip_data[['precip']].plot(kind='bar', width = 0.35)
-precip_data['precip'].plot(secondary_y=True)
+# Line plot comparison of predicted and observed flows with yscale = 'normal'
+fig, axs = plt.subplots(2)
+axs[0].plot(train['flow'], color='grey', linewidth=2, label='observed')
+axs[0].plot(train.index, np.exp(q_pred_train), color='green', linestyle='--',
+            label='simulated')
+axs[0].set(title="Observed Flow", xlabel="Date",
+           ylabel="Weekly Avg Flow [cfs]")
+axs[0].tick_params(axis='x', labelrotation=70)
+axs[0].legend()
 
-fig5 = []
+# Line plot comparison of weekly average precipitation
+# and weekly cumulative precipitation
+
+axs[1].plot(prd_avg.index, prd_avg['precip'], color='red', linewidth=2,
+            label='precip_avg')
+axs[1].plot(prd_sum.index, prd_sum['precip'], color='blue', linewidth=2,
+            label='precip_sum')
+axs[1].set(title="Observed Precipitaion", xlabel="Date",
+           ylabel="Weekly Precipitaion")
+axs[1].tick_params(axis='x', labelrotation=70)
+axs[1].legend()
+
+fig.savefig("graphs/Observed_Flow_and_Precip.png")
+
+# %%
+# Line plot comparison of flow and precipitation
+# Work in progress...
+# an second y-axes would make more sense
+fig, ax = plt.subplots()
+fig.set_size_inches(20, 8)
 ax.plot(train['flow'], color='grey', linewidth=2, label='observed')
 ax.plot(train.index, np.exp(q_pred_train), color='green', linestyle='--',
         label='simulated')
-ax.set(title="Observed Log(Flow)", xlabel="Date", ylabel="Weekly Avg Flow [cfs]",
-       yscale='log')
-axs[0].tick_params(axis='x', labelrotation=70)
-axs[0].legend()
+ax.plot(prd_avg.index, prd_avg['precip'], color='red', linewidth=2,
+        label='precip_avg')
+ax.plot(prd_sum.index, prd_sum['precip'], color='blue', linewidth=2,
+        label='precip_sum')
+ax.set(title="Observed Weekly Flow & Precipitaion", xlabel="Date",
+       ylabel="Weekly Avg Flow [cfs]")
+ax.tick_params(axis='x', labelrotation=70)
+ax.legend()
+
+fig.savefig("graphs/Observed_Flow_and_Precip_combined.png")
+
 # %%
