@@ -42,3 +42,23 @@ console.log("Hello World")
 <video controls src="https://www.youtube.com/watch?v=Z1Yd7upQsXY&ab_channel=CSDojo">python</video>
 
 ![pycon-logo.jpg](img/035575f2985fe451d86e717d73691e533a1a00545d7230900ed786341dc3c882.jpg)
+
+</script>
+			</div>
+		</div>
+	</div>
+	<div class="content_container">
+		<div class="container">
+			<div class="columns">
+				<div class="column-wrapper">
+					<div class="content">
+						<article id="post-8" class="post_box grt top" itemscope="" itemtype="https://schema.org/Article">
+							<link href="http://www.randomkittengenerator.com/" itemprop="mainEntityOfPage">
+							<div class="post_content" itemprop="articleBody">
+<p style="text-align: center;"><a class="reload-button" href="/"><img id="submit" class="cat aligncenter" src="/cats/rotator.php" alt="A Random Kitten - Click to Refresh" width="300px" height="300px" border="0"></a><br>
+Click the pic for another random kitten</p>
+<div style="text-align: center;"></div>
+							</div>
+						</article>
+					</div>
+					<div class="sidebar primary">
