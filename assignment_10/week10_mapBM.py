@@ -125,8 +125,8 @@ UofA_proj.plot(ax=ax, label='U of A', color='red', edgecolor='blue', marker='^',
 Gage_proj.plot(ax=ax, label='Gage# 09506000', color='orange', edgecolor='blue', marker='*',
                markersize=700, zorder=5)
 ax.set_title('Arizona National Forests w/ Stream Gages')
-ax.set_xlabel('Lat')
-ax.set_ylabel('Long')
+ax.set_xlabel('Long')
+ax.set_ylabel('Lat')
 ax.legend()
 plt.show()
 
