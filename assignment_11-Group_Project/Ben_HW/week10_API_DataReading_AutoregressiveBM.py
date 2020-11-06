@@ -270,7 +270,8 @@ precip_data["year"] = precip_data["year"].astype(str)
 precip_data["yearday"] = precip_data["yearday"].astype(str)
 precip_data["year"] = precip_data["year"].str.slice(0, -2)
 precip_data["yearday"] = precip_data["yearday"].str.slice(0, -2)
-precip_data["date"] = precip_data["year"].str.cat(precip_data["yearday"], sep = ' ')
+precip_data["date"] = precip_data["year"].str.cat(precip_data["yearday"],
+                                                  sep = ' ')
 precip_data['datetime'] = pd.to_datetime(precip_data.date, format='%Y %j')
 
 # Create day of the week coulmn and resample for weeks
