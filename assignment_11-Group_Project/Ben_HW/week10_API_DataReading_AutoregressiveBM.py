@@ -18,7 +18,7 @@ import json
 import urllib.request as req
 import urllib
 # import eval_fuctions as ef
-# import dataretrieval.nwis as nwis
+import dataretrieval.nwis as nwis
 # could not find packages?
 
 
