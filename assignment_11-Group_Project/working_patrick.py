@@ -65,14 +65,14 @@ data_flow_day.index = data_flow_day.index.strftime('%Y-%m-%d')
 data_flow_day['datetime'] = pd.to_datetime(data_flow_day.index)
 data_flow_day['year'] = pd.DatetimeIndex(data_flow_day['datetime']).year
 data_flow_day['month'] = pd.DatetimeIndex(data_flow_day['datetime']).month
-data_flow_day['day'] = pd.DatetimeIndex(data_flow_day['datetime']).dayofweek
+data_flow_day['day'] = pd.DatetimeIndex(data_flow_day['datetime']).day
 data_flow_day['dayofweek'] = pd.DatetimeIndex(data_flow_day['datetime']).dayofweek
 
 # %% AR model that you ended up building
 # 1st step: Arrays to build model
 wkly_flow_mean = data_flow_day.resample("W", on='datetime').mean()  # Flow to weekly
 # %%
-mnth = 8
+mnth = 9
 data_mnth = data_flow_day[data_flow_day['month'] == mnth]
 flow_weekly_mnth = wkly_flow_mean[wkly_flow_mean['month'] == mnth]
 flow_quants_mnth = np.quantile(flow_weekly_mnth['flow'], q=[0, 0.5, 0.75, 0.9])
@@ -80,24 +80,26 @@ print('Method of flow quantiles for month ', mnth, ':', flow_quants_mnth)
 print('For plots, Green is flow max above 75%, and Red is below 50%')
 fig = plt.figure(figsize=(30, 10))
 fig.subplots_adjust(hspace=0.4, wspace=0.4)
-# ax.set_xticklabels(test_weeks.index, rotation=45, ha="right")
+
 for i in range(1, 31):
-    curr_yr = 2005
+    curr_yr = (i + 1990)
     flow_weekly_mnth_i = flow_weekly_mnth[flow_weekly_mnth['year'] ==
                                           curr_yr]
     data_mnth_i = data_mnth[data_mnth['year'] == curr_yr]
     ax = fig.add_subplot(3, 10, i)
+#   ax.set_xticklabels(data_mnth_i['datetime'], rotation=45, ha="right")
     if (np.max(flow_weekly_mnth_i['flow']) > flow_quants_mnth[2]):
-        ax.plot(flow_weekly_mnth_i.index, flow_weekly_mnth_i['flow'],
+        ax.plot(flow_weekly_mnth_i['flow'],
                 '-g', label='full')
-        ax.plot(data_mnth_i.index, data_mnth_i['flow'], color='grey')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
     elif (np.max(flow_weekly_mnth_i['flow']) < flow_quants_mnth[1]):
-        ax.plot(flow_weekly_mnth_i.index, flow_weekly_mnth_i['flow'],
+        ax.plot(flow_weekly_mnth_i['flow'],
                 '-r', label='full')
-        ax.plot(data_mnth_i.index, data_mnth_i['flow'], color='grey')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
     else:
-        ax.plot(flow_weekly_mnth_i.index, flow_weekly_mnth_i['flow'],
+        ax.plot(flow_weekly_mnth_i['flow'],
                 '-b', label='full')
-        ax.plot(data_mnth_i.index, data_mnth_i['flow'], color='grey')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
+
 
 # %%
