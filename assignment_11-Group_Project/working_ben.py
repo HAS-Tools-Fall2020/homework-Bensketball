@@ -1,4 +1,5 @@
 # here is where each of us can work on testing scripts
+# Not Complete!
 
 # %%
 # Import the modules we will use
@@ -128,5 +129,11 @@ print('slope:', np.round(model2.coef_, 7))
 # Finding the Flows
 week_before_flow = flow_weekly['log_flow'].tail(1)
 
-Corr_fact1 = week_before_flow / AR1_output
-Corr_fact2 = week_before_flow / AR2_output
+# Corr_fact1 = week_before_flow / AR1_output
+# Corr_fact2 = week_before_flow / AR2_output
+# %%
+
+# my_prediction_1 = real_prediction(0, last_week_flow, None)*0.80
+# my_prediction_2 = real_prediction(1, last_week_flow, last2_week_flow)*.84
+# print("week 1 prediction outside AR=", my_prediction_1.round(1))
+# print("week 2 prediction outside AR=", my_prediction_2.round(1))
