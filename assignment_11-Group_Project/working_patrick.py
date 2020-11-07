@@ -10,6 +10,7 @@ import json  # conda install json
 import urllib.request as req   # conda install urllib3
 import urllib
 import dataretrieval.nwis as nwis
+from matplotlib import ticker
 
 # %% Declare some functions
 
@@ -72,34 +73,43 @@ data_flow_day['dayofweek'] = pd.DatetimeIndex(data_flow_day['datetime']).dayofwe
 # 1st step: Arrays to build model
 wkly_flow_mean = data_flow_day.resample("W", on='datetime').mean()  # Flow to weekly
 # %%
-mnth = 9
-data_mnth = data_flow_day[data_flow_day['month'] == mnth]
-flow_weekly_mnth = wkly_flow_mean[wkly_flow_mean['month'] == mnth]
+# This is the final graph function, to adjust for naming differences, the only
+# change needed is to the parts before the for loop and defining data_mnth_i &
+# flow_weekly_mnth_i in the for loop
+data_mnth = data_flow_day[data_flow_day['month'] > 7]
+flow_weekly_mnth = wkly_flow_mean[wkly_flow_mean['month'] > 7]
 flow_quants_mnth = np.quantile(flow_weekly_mnth['flow'], q=[0, 0.5, 0.75, 0.9])
 print('Method of flow quantiles for month ', mnth, ':', flow_quants_mnth)
 print('For plots, Green is flow max above 75%, and Red is below 50%')
 fig = plt.figure(figsize=(30, 10))
-fig.subplots_adjust(hspace=0.4, wspace=0.4)
-
+fig.subplots_adjust(hspace=0.6, wspace=0.4)
 for i in range(1, 31):
     curr_yr = (i + 1990)
     flow_weekly_mnth_i = flow_weekly_mnth[flow_weekly_mnth['year'] ==
                                           curr_yr]
     data_mnth_i = data_mnth[data_mnth['year'] == curr_yr]
     ax = fig.add_subplot(3, 10, i)
-#   ax.set_xticklabels(data_mnth_i['datetime'], rotation=45, ha="right")
+    ax.set(title=("Streamflow in " + str(curr_yr)),
+           ylabel="Weekly Avg Flow [cfs]", yscale='log')
+    plt.xticks(rotation=45)
     if (np.max(flow_weekly_mnth_i['flow']) > flow_quants_mnth[2]):
         ax.plot(flow_weekly_mnth_i['flow'],
-                '-g', label='full')
-        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
+                '-g', label='Weekly Average')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey',
+                label='Daily Flow')
+        ax.legend()
     elif (np.max(flow_weekly_mnth_i['flow']) < flow_quants_mnth[1]):
         ax.plot(flow_weekly_mnth_i['flow'],
-                '-r', label='full')
-        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
+                '-r', label='Weekly Average')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey',
+                label='Daily Flow')
+        ax.legend()
     else:
         ax.plot(flow_weekly_mnth_i['flow'],
-                '-b', label='full')
-        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey')
+                '-b', label='Weekly Average')
+        ax.plot(data_mnth_i['datetime'], data_mnth_i['flow'], color='grey', 
+                label='Daily Flow')
+        ax.legend()
 
 
 # %%
