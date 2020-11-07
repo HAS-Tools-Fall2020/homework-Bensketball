@@ -21,10 +21,11 @@ import dataretrieval.nwis as nwis
 # %% Declare all our functions
 
 # Building a function for our Linear Regression Model
-def lin_reg_mod(test_weeks):
-    """Linear Regression Model. 
+def mono_reg_mod(test_weeks):
+    """Linear Regression Model data being offset only once.
     test weeks = natural log streamflow laged by 1 week (x values)
-    test weeks = natural log streamflow (y values) """
+    test weeks = natural log streamflow (y values)
+    """
     reg_model = LinearRegression()
     x_val_model1 = test_weeks['log_flow_tm1'].values.reshape(-1, 1)  # Testing values
     y_val_model1 = test_weeks['log_flow'].values  # Testing values
@@ -39,9 +40,10 @@ def lin_reg_mod(test_weeks):
 
 # Building a function for our Linear Regression Model
 def poly_reg_mod(test_weeks):
-    """Polynomial Regression Model. 
+    """Linear Regression Model with data being offset on two separate occasions.
     test weeks = natural log of streamflow laged by 1 & 2 weeks (x values)
-    test weeks = natural log of streamflow (y values) """
+    test weeks = natural log of streamflow (y values)
+    """
     poly_model = LinearRegression()
     x_val_model2 = test_weeks[['log_flow_tm1', 'log_flow_tm2']]  # Testing values
     y_val_model2 = test_weeks['log_flow']  # Testing values
@@ -50,15 +52,16 @@ def poly_reg_mod(test_weeks):
     c = np.round(poly_model.intercept_, 7)  # Intercept
     a = np.round(poly_model.coef_, 7)  # Slope(s)
     print('coefficient of determination:', np.round(coeff_det2, 7))
-    # Intercept and the slope (Final equation) y= a1*x^2 + a2*x + c
-    print('Final equation is y2 = :', a[1:2], 'x^2 + ', a[:1], 'x + ', c)
+    # Intercept and the slope (Final equation) y= a1*x1 + a2*x2 + c
+    print('Final equation is y2 = :', a[:1], 'x1 + ', a[1:2], 'x2 + ', c)
     return(c,a,poly_model,coeff_det2)
 
 # Building a function for flow prediction outside of the AR model
 def real_prediction(indexnumber, last_week_flow, last2_week_flow=None):
     """This function is prepping the linear regression model to be
     multiplied by a correction factor to bring it down to a more
-    reasonable value for the forecast of week 1 and week 2. """
+    reasonable value for the forecast of week 1 and week 2.
+    """
     if indexnumber == 0 and last2_week_flow is None:
         rp = (model.intercept_ + model.coef_[indexnumber] * last_week_flow)
     if indexnumber == 1:
@@ -69,8 +72,15 @@ def real_prediction(indexnumber, last_week_flow, last2_week_flow=None):
     return rp
 
 # Building a function to produce our two week flow predictions
-# using linaral model1
-def flow_predic_lin(b, m, num_of_weeks, week_b4, forecast_weeks):
+# using linaral model1 with only one data offsets
+def flow_predic_mono(b, m, num_of_weeks, week_b4, forecast_weeks):
+    """This function produces predicted flow values using coefficients provided
+    by an Liner Autoregressive Model with only one data offset.
+    'b' is the y-intersept and 'm' is the slope.
+    'num_of_weeks' is how many weeks you would like to loop the model for.
+    'week_b4' is the natural log flow of a known flow and
+    'forecast_weeks' is a list of dates that you are predicting for.
+    """
     week_b4_i = week_b4
     pred_i = np.zeros((num_of_weeks, 1))
     for i in range(1, num_of_weeks + 1):
@@ -83,12 +93,19 @@ def flow_predic_lin(b, m, num_of_weeks, week_b4, forecast_weeks):
     return flow_predictions_lin
 
 # Building a function to produce our two week flow predictions
-# using polynomial model2
+# using linaral model2 with multiple data offsets
 def flow_predic_poly(c, a, num_of_weeks, week_b4, forecast_weeks):
+    """This function produces predicted flow values using coefficients provided
+    by an Liner Autoregressive Model with two different data offsets.
+    'c' is the y-intersept and 'a' is a list of two slopes provided by the model.
+    'num_of_weeks' is how many weeks you would like to loop the model for.
+    'week_b4' is the natural log flow of a known flow and
+    'forecast_weeks' is a list of dates that you are predicting for.
+    """
     week_b4_i = week_b4
     pred_i = np.zeros((num_of_weeks, 1))
     for i in range(1, num_of_weeks + 1):
-            log_flow_pred_i = c + a[0] * week_b4_i + a[1] * (week_b4_i)**2
+            log_flow_pred_i = c + a[1] * week_b4_i + a[0] * (week_b4_i)
             flow_pred_i = math.exp(log_flow_pred_i)
             pred_i[i-1] = flow_pred_i
             week_b4_i = log_flow_pred_i
@@ -103,8 +120,8 @@ def week_prediction_all(flow, m, b, week_pred, end, prev_wks):
     consider for weekly forecast (prev_wks and end). To indicate the week
     to forecast include the week number (week_pred = 1 or week_pred = 2)
     We are using the mean value of the data range you select - the standard
-    deviation of the same data range """
-
+    deviation of the same data range
+    """
     flow_range_value = flow['flow'][no_weeks-prev_wks:no_weeks-end].mean() - 0.3*flow[
                        'flow'][no_weeks - prev_wks:no_weeks-end].std()  # flow range mean - std
     prediction = (b + m * flow_range_value)*(1) # dryness of this year
@@ -205,7 +222,7 @@ test = flow_weekly[trainend:][['log_flow',
 
 # %%
 # Step 3a: Fit a linear regression model using sklearn, 1 variable
-b, m, reg_model1, coeff_det1 = lin_reg_mod(train)
+b, m, reg_model1, coeff_det1 = mono_reg_mod(train)
 # Step 3b: Fit a linear regression model using sklearn, 2 variables
 c, a, reg_model2, coeff_det2 = poly_reg_mod(train)
 
@@ -225,9 +242,9 @@ forecast_week_1_thru_16 = ['2020-08-22','2020-08-30','2020-09-06','2020-09-13',
                            '2020-11-15','2020-11-22','2020-11-29','2020-12-06']
 
 # Finding next weeks and next next weeks flows using both models outputs
-# The number chosen for the function named "flow_predic_lin", was "2".
-# This is because we want to predict next weeks flow and next next weeks flow.
-print(flow_predic_lin(b, m, 2, week_before_flow, forecast_week_1_2), '\n')
+# The number chosen for the function named "flow_predic_mono" and "flow_predic_poly",
+#  was "2". This is because we want to predict next weeks flow and next next weeks flow.
+print(flow_predic_mono(b, m, 2, week_before_flow, forecast_week_1_2), '\n')
 print(flow_predic_poly(c, a, 2, week_before_flow, forecast_week_1_2))
 
 
@@ -238,7 +255,7 @@ week_start_flow = flow_weekly.loc['2020-08-16'][['log_flow']]
 print("First flow of the semester was", math.exp(week_start_flow),'cfs!', '\n')
 
 # Running the functions for 16 weeks out
-print(flow_predic_lin(b, m, 16, week_before_flow, forecast_week_1_thru_16), '\n')
+print(flow_predic_mono(b, m, 16, week_before_flow, forecast_week_1_thru_16), '\n')
 print(flow_predic_poly(c, a, 16, week_before_flow, forecast_week_1_thru_16))
 
 
