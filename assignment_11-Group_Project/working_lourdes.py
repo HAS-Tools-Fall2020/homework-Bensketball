@@ -16,79 +16,59 @@ import contextily as ctx
 from shapely.geometry import Point
 import geopandas as gpd
 import fiona
-import matplotlib.pyplot as plt
 import matplotlib as mpl
 
+# %% Define fixed variables
+station_id = '09506000'  # Streamflow station
+trainstart = '2016-01-01'  # Start date to train AR model
+trainend = '2019-12-31'  # end date to train AR model
+lag = 2  # No. of weeks to consider for lag 
 # %% Streamflow section
 # Get streamflow from website using getstrm_wbs function
-station_id = '09506000'
-#end_date = '2020-10-31'
-end_date = '2020-11-07'  #yyyy-mm-dd
+end_date = '2020-11-07'  # yyyy-mm-dd (changes each week)
 
-flow_data = getstrm_wbs(station_id,end_date)
+flow_data = getstrm_wbs(station_id,end_date)  # get strmflow data from website
 flow_data_pd = add_yymmdd(flow_data)  # add year,month,day
 
-# Aggregate flow values to weekly
-flow_weekly = flow_data_pd.resample("W", on='datetime').mean()
-# As an added bonus I am taking the natural log of the data
-# because it fits the model better with all data included
-flow_weekly.insert(2, 'log_flow', np.log(flow_weekly['flow']), True)
+flow_weekly = flow_data_pd.resample("W", on='datetime').mean()  # Add flow values to weekly
+flow_weekly.insert(2, 'log_flow', np.log(flow_weekly['flow']), True)  # Natural log (fits the model better)
 
-# %%
-# Step 1: setup the arrays you will build your model on
-# This is an autoregressive model so we will be building
-# it based on the lagged timeseries
-shifts = [1, 2]
+# %% Step 1: setup the arrays (to build the model)
+# Autoregressive model (based on the lagged timeserie)
+
+# def lag_data(flow_weekly,shifts):
+#       shifts = list(range(1, lag+1))
+#       flow_weekly['log_flow_tm1'] = flow_weekly['log_flow'].shift(shifts[0]) # Flow lag 1week
+#       flow_weekly['log_flow_tm2'] = flow_weekly['log_flow'].shift(shifts[1]) # Flow lag 2weeks
+#       return flow_weekly
+
+shifts = list(range(1, lag+1))
+# name = ['log_flow_tm']
+# for i in range(1,3):
+#       flow_weekly[name, str(i)] = flow_weekly['log_flow'].shift(shifts[i-1]) # Flow lag week
+
+
 print('Shfiting the data by', shifts, 'weeks.')
-flow_weekly['log_flow_tm1'] = flow_weekly['log_flow'].shift(shifts[0]) # Flow lag 1week
-flow_weekly['log_flow_tm2'] = flow_weekly['log_flow'].shift(shifts[1]) # Flow lag 2weeks
+flow_weekly['log_flow_tm1'] = flow_weekly['log_flow'].shift(shifts[0])  # Lag 1week
+flow_weekly['log_flow_tm2'] = flow_weekly['log_flow'].shift(shifts[1])  # Lag 2weeks
 
-#%%
-# Step 2: Pick what portion of the time series you want to use as training data
-# here I'm grabbing the weeks for our training period.
-# LC nice  job defining these as variables -- one suggestion would be to move user defined variables to the top
-trainstart = '2016-01-01'
-trainend = '2019-12-31'
-print('trainstart', trainstart)
-print('trainend', trainend)
+# %% Step 2: Pick time series portion to train model
+print('Start training week: ', trainstart)
+print('End training week: ', trainend)
 
-# Note1 - dropping the first two weeks since they wont have lagged data
-# to go with them
+# Dropping first two weeks (won't have lagged data) to go with them
 train = flow_weekly[trainstart:trainend][['log_flow',
                                           'log_flow_tm1', 'log_flow_tm2']]
 test = flow_weekly[trainend:][['log_flow',
                                'log_flow_tm1', 'log_flow_tm2']]
 
-# Step 3a: Fit a linear regression model using sklearn, 1 variable
-# model1 = LinearRegression()
-# x1 = train['log_flow_tm1'].values.reshape(-1, 1)
-# y1 = train['log_flow'].values
-# model1.fit(x1, y1)
-# r_sq1 = model1.score(x1, y1)
-# print('coefficient of determination:', np.round(r_sq1, 7))
-# print('slope:', np.round(model1.coef_, 7))
-# print('intercept:', np.round(model1.intercept_, 7))
-
-# %%
-# Step 3b: Fit a linear regression model using sklearn, 2 variables
-# model2 = LinearRegression()
-# x2 = train[['log_flow_tm1', 'log_flow_tm2']]
-# y2 = train['log_flow']
-# model2.fit(x2, y2)
-# r_sq2 = model2.score(x2, y2)
-# print('coefficient of determination:', np.round(r_sq2, 7))
-# print('slope:', np.round(model2.coef_, 7))
-# print('intercept:', np.round(model2.intercept_, 7))
-
-
-# %%
-# Step 3a: Fit a linear regression model using sklearn, 1 variable
+# %% Step 3 Fit AR model
+# Step 3a: Linear regression model using sklearn, 1 variable
 b, m, reg_model1, coeff_det1 = mono_reg_mod(train)
-# Step 3b: Fit a linear regression model using sklearn, 2 variables
+# Step 3b: Linear regression model using sklearn, 2 variables
 c, a, reg_model2, coeff_det2 = poly_reg_mod(train)
 
-# %%
-# Getting our two week predictions!
+# %% Getting our two week predictions!
 # Geting last weeks flow
 week_before_flow = flow_weekly['log_flow'].tail(1)
 print("Last weeks's flow was", math.exp(week_before_flow),'cfs!', '\n')
@@ -108,8 +88,7 @@ print(flow_predic_mono(b, m, 2, week_before_flow, forecast_week_1_2), '\n')
 print(flow_predic_poly(c, a, 2, week_before_flow, forecast_week_1_2))
 
 
-# %%
-# Testing models for 16 week predictions
+# %% Testing models for 16 week predictions
 # Getting the first weekly average flow of the semester!
 week_start_flow = flow_weekly.loc['2020-08-16'][['log_flow']]
 print("First flow of the semester was", math.exp(week_start_flow),'cfs!', '\n')
@@ -129,15 +108,14 @@ print(flow_predic_poly(c, a, 16, week_before_flow, forecast_week_1_thru_16))
 # print("week 2 prediction outside AR=", my_prediction_2.round(1))
 
 
-# %% Function Lourdes
+# %% 16 week forecast taking previous 12 weeks mean before week to forecast
 no_weeks = flow_weekly["log_flow"].size  # Number of weeks up to date
 begining_week_ly = 25  # start week year 2020
 ending_week_ly = 12  # end week year 2020
 dates_weeks_range = flow_weekly['log_flow'][no_weeks-begining_week_ly:
-                                           no_weeks-ending_week_ly]
-# %% 
-wk_prd = np.zeros(16)
+                                           no_weeks-ending_week_ly] 
 
+wk_prd = np.zeros(16)
 for i in range(1,17):
        wk_prd = week_prediction_all(flow=flow_weekly, m=m, b=b,
                                     prev_wks=begining_week_ly, end=ending_week_ly, week_pred=i)
@@ -184,35 +162,34 @@ for i in range(1, 31):
                 label='Daily Flow')
         ax.legend()
 
-# %% Map Gauges II USGS stream gauge dataset:
-# Download here:
+# %% Get variables to map
+
+# Map Gauges II USGS stream gauge dataset:
 # https://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml#stdorder
-# Reading it using geopandas
-# file = os.path.join('../data', 'gagesII_9322_sept30_2011.shp')
-file = os.path.join('../../data/', 'gagesII_9322_sept30_2011.shp')
-gages = gpd.read_file(file)
-gages_AZ=gages[gages['STATE']=='AZ']
+filepath = os.path.join('../../data')
+state= 'AZ' #  state
+gages_AZ = down_map_var(filepath,0,state)
 
-# adding more datasets
-# https://www.usgs.gov/core-science-systems/ngp/national-hydrography/access-national-hydrography-products
-# https://viewer.nationalmap.gov/basic/?basemap=b1&category=nhd&title=NHD%20View
-
-# Example reading in a geodataframe
 # Watershed boundaries for the lower colorado
-#filepath = '../data/Shape'
-filepath = '../../data/map/Shape'
-filename = 'WBDHU6.shp'
-file = os.path.join(filepath,
-                    filename)
-HUC6 = gpd.read_file(file, layer="WBDHU6")
-huc = gpd.read_file(file)
-# %%
-# plot the new layer we got:
-#fig, ax = plt.subplots(figsize=(5, 5))
-#HUC6.plot(ax=ax)
-#ax.set_title("HUC Boundaries")
-#plt.show()
+# https://viewer.nationalmap.gov/basic/?basemap=b1&category=nhd&title=NHD%20View
+filepath_bd = '../../data/map/Shape'
+HUC6 = down_map_var(filepath_bd,1,state)
 
+# Forest
+filepath_fr = '../../data/map'
+forest = down_map_var(filepath_fr,2,state)
+forests_az = ['Kaibab National Forest', 'Prescott National Forest',
+              'Coconino National Forest', 'Tonto National Forest',
+              'Apache-Sitgreaves National Forests', 'Coronado National Forest']
+forest_az=forest[forest['FORESTNAME'].isin(forests_az)]
+
+# Rivers and stream
+
+filepath_rv = '../../data/map/USA_Rivers_and_Streams-shp'
+rivers_AZ = down_map_var(filepath_rv,3,state)
+rivers_AZ.columns
+rivers_AZ.Name.unique()
+river_verde = rivers_AZ[rivers_AZ['Name'] == 'Verde River']
 
 # %%
 # Add some points
@@ -223,46 +200,14 @@ point_list = np.array([[-111.240551, 32.231749],
 #make these into spatial features
 point_geom = [Point(xy) for xy in point_list]
 point_geom
-# %%
+
 #mape a dataframe of these points
 point_df = gpd.GeoDataFrame(point_geom, columns=['geometry'],
                             crs=HUC6.crs)
-# %%
-#filepath = '../data/S_USA.AdministrativeForest'
-filepath = '../../data/map/'
-filename = 'S_USA.AdministrativeForest.shp'
-file = os.path.join(filepath,
-                    filename)
-forest = gpd.read_file(file)
-# print(forest.head())
-
-forests_az = ['Kaibab National Forest', 'Prescott National Forest',
-              'Coconino National Forest', 'Tonto National Forest',
-              'Apache-Sitgreaves National Forests', 'Coronado National Forest']
-forest_az=forest[forest['FORESTNAME'].isin(forests_az)]
-
-
-
-# %%
-#filepath = '../data/USA_Rivers_and_Streams-shp'
-filepath = '../../data/map/USA_Rivers_and_Streams-shp'
-filename = '9ae73184-d43c-4ab8-940a-c8687f61952f2020328-1-r9gw71.0odx9.shp'
-file = os.path.join(filepath,
-                    filename)
-rivers_USA = gpd.read_file(file)
-rivers_USA.columns
-rivers_USA.State.unique()
-rivers_AZ = rivers_USA[rivers_USA['State'] == 'AZ']
-
-rivers_AZ.columns
-rivers_AZ.Name.unique()
-river_verde = rivers_AZ[rivers_AZ['Name'] == 'Verde River']
 
 # %%
 # Now trying to put it all together - adding our two points to the stream gagees
 point_df.plot(ax=ax, color='r', marker='*')
-
-
 
 # %%
 # Adding a basemap, correcting crs to align on basemap

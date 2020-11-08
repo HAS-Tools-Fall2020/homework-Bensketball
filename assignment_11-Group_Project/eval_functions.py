@@ -5,6 +5,20 @@ import pandas as pd
 from glob import glob
 import dataretrieval.nwis as nwis
 import datetime
+# import mat
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+import json 
+import urllib.request as req
+import urllib
+import eval_functions
+import contextily as ctx
+from shapely.geometry import Point
+import geopandas as gpd
+import fiona
+import matplotlib as mpl
+
 
 # %% Group Functions
 
@@ -163,12 +177,40 @@ def week_prediction_all(flow, m, b, week_pred, end, prev_wks):
     deviation of the same data range
     """
     Corr_fact1 = 0.2
+    no_weeks = flow_weekly["log_flow"].size
     #Corr_fact1 = 0.4*flow['log_flow'][no_weeks - prev_wks:no_weeks-end].std()
     #Corr_fact1 = flow['log_flow'][no_weeks-end] / flow['log_flow'][no_weeks-(end-1)]
     flow_range_value = flow['log_flow'][no_weeks-prev_wks:no_weeks-end].mean() -0.25*flow['log_flow'][no_weeks - prev_wks:no_weeks-end].std()
     prediction = math.exp((b + m * flow_range_value))*(1-Corr_fact1) # dryness of this year
     print('Week', week_pred, 'forecast using model is:', prediction,'Correction factor:',Corr_fact1)
     return prediction,Corr_fact1
+
+
+# Calling data to be used in map
+def down_map_var(file_path,layer,state):
+       
+       if layer == 0:
+              filename = 'gagesII_9322_sept30_2011.shp'
+              filend=os.path.join(file_path,filename)
+              varmap = gpd.read_file(filend)
+              varmap=varmap[varmap['STATE'] == state]
+       elif layer == 1:
+              filename = 'WBDHU6.shp'
+              filend=os.path.join(file_path,filename)
+              var = 'WBDHU6'
+              varmap = gpd.read_file(filend,layer = var)
+       elif layer == 2:
+              filename = 'S_USA.AdministrativeForest.shp'
+              filend=os.path.join(file_path,filename)
+              varmap = gpd.read_file(filend)
+       elif layer == 3:
+              filename = '9ae73184-d43c-4ab8-940a-c8687f61952f2020328-1-r9gw71.0odx9.shp'
+              filend=os.path.join(file_path,filename)
+              varmap = gpd.read_file(filend)
+              varmap.State.unique()
+              varmap = varmap[varmap['State'] == state]            
+       return varmap
+
 
 # %% Class functions
 def getLastNames():
