@@ -48,7 +48,7 @@ shifts = list(range(1, lag+1))
 #       flow_weekly[name, str(i)] = flow_weekly['log_flow'].shift(shifts[i-1]) # Flow lag week
 
 
-print('Shfiting the data by', shifts, 'weeks.')
+# print('Shfiting the data by', shifts, 'weeks.')
 flow_weekly['log_flow_tm1'] = flow_weekly['log_flow'].shift(shifts[0])  # Lag 1week
 flow_weekly['log_flow_tm2'] = flow_weekly['log_flow'].shift(shifts[1])  # Lag 2weeks
 
@@ -191,12 +191,9 @@ rivers_AZ.columns
 rivers_AZ.Name.unique()
 river_verde = rivers_AZ[rivers_AZ['Name'] == 'Verde River']
 
-# %%
-# Add some points
-# Central Avra Valley Storage and Recovery Project:  32.22877495, -110.97688412
+# %% Add some points
 # Stream gauge:  34.44833333, -111.7891667
-point_list = np.array([[-111.240551, 32.231749],
-                       [-111.7891667, 34.44833333]])
+point_list = np.array([[-111.7891667, 34.44833333]])
 #make these into spatial features
 point_geom = [Point(xy) for xy in point_list]
 point_geom
