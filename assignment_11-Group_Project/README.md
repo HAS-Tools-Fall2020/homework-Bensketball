@@ -1,5 +1,6 @@
-# This repo is for the team Stræm FlοwCαts!
-### `Go Stræm FlοwCαts!!!`
+# This repo is for the Big Brain Team!
+### What time is it?
+### `Big Brain Time!!!`
 
 ___
 Here is the Team's repo.  Let me know if you have any questions. :)
@@ -9,3 +10,8 @@ I have added my past HW code(s) to look at.  Feel free to edit and change this H
 Feel free to add any of your own files in and make sure you have a backup 'copy' of them.  Backups are good practice!
 
 ~ Thank you!
+
+___
+### Old New:
+#### This repo is for the team Stræm FlοwCαts!
+###### `Go Stræm FlοwCαts!!!`

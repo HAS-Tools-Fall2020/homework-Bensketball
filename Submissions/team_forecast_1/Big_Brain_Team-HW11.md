@@ -1,4 +1,8 @@
-# Big Brain Team
+# Big Brain Team!!!
+## What time is it?
+### `Big Brain Time!!!`
+
+___
 ## Lourdes Fierro, Adam Stratman, Patrick Neri, Benjamin Mitchell
 ### `11/08/2020`
 ### Group Homework #11
