@@ -94,8 +94,8 @@ week_start_flow = flow_weekly.loc['2020-08-16'][['log_flow']]
 print("First flow of the semester was", math.exp(week_start_flow),'cfs!', '\n')
 
 # Running the functions for 16 weeks out
-print(flow_predic_mono(b, m, 16, week_before_flow, forecast_week_1_thru_16), '\n')
-print(flow_predic_poly(c, a, 16, week_before_flow, forecast_week_1_thru_16))
+print(flow_predic_mono(b, m, 16, week_start_flow, forecast_week_1_thru_16), '\n')
+print(flow_predic_poly(c, a, 16, week_start_flow, forecast_week_1_thru_16))
 
 
 # Corr_fact1 = week_before_flow / AR1_output
