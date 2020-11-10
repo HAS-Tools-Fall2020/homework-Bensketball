@@ -3,6 +3,10 @@
 ### `Big Brain Time!!!`
 
 ___
+##
+# Grade 3/3 - Great job! Awesome maps and figures and I like how you separated out your functions and split the work among the group.
+___
+
 ## Lourdes Fierro, Adam Stratman, Patrick Neri, Benjamin Mitchell
 ### `11/08/2020`
 ### Group Homework #11
