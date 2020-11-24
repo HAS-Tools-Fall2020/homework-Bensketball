@@ -18,7 +18,8 @@ from netCDF4 import Dataset
 
 # %%
 # reading in the basin file for mapping
-basin_file = os.path.join('../../../data/Shape', 'WBDHU8.shp')
+basin_file = os.path.join('../../../HAS-Tools-Fall2020_local/USGS/WBD_15_HU2_Shape/Shape',
+                          'WBDHU8.shp')
 HUC8 = gpd.read_file(basin_file)
 
 #Check the type and see the list of layers
@@ -28,13 +29,13 @@ HUC8.head()
 # %%
 # Net CDF file of precip forecast
 # https://towardsdatascience.com/handling-netcdf-files-using-xarray-for-absolute-beginners-111a8ab4463f
-data_path = os.path.join('data',
+data_path = os.path.join('./data',
                          'gfs.0p25.2020110712.f024.grib2.condon456696.nc')
 
 # Read in the dataset as an x-array
 dataset = xr.open_dataset(data_path)
 # look at it
-dataset
+print(dataset)
 
 
 # We can inspect the metadata of the file like this:
@@ -150,3 +151,6 @@ ax.text(-111.62, 35.13, 'Flagstaff', fontweight='bold', transform=projection)
 plotfile = 'forecast_precip_accu.png'
 sf = fig.savefig(plotfile, dpi=300, bbox_inches='tight')
 plt.show()
+
+
+# %%

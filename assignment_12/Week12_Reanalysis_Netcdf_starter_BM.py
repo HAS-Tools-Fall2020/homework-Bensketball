@@ -27,12 +27,12 @@ data_path = os.path.join('./data',
 # Read in the dataset as an x-array
 dataset = xr.open_dataset(data_path)
 # look at it
-dataset
+print(dataset)
 
 
 # We can inspect the metadata of the file like this:
 metadata = dataset.attrs
-metadata
+print(metadata)
 # And we can grab out any part of it like this:
 metadata['dataset_title']
 
@@ -81,3 +81,6 @@ ax.set(title="Time Series For a Single Lat / Lon Location")
 one_point_df = one_point.to_dataframe()
 
 #from here you can do anything you want the same way we have when working with other dataframes
+
+
+# %%
