@@ -64,7 +64,7 @@ ___
 <a name="cod"></a>
 ## My Python Code(s)6:
 
-The Python Code, created in Visual Studio Code (VSC), can be found [here](../Mitchell_week12.py).  This python code was crafted from the original Starter code given [here](../Orig_Starter_Codes_BM/Week12_Reanalysis_Netcdf_starter.py).
+The Python Code, created in Visual Studio Code (VSC), can be found [here](Mitchell_week12.py).  This python code was crafted from the original Starter code given [here](../../Orig_Starter_Codes_BM/Week12_Reanalysis_Netcdf_starter.py).
 
 
 ___
