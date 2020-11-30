@@ -8,8 +8,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # %%
-filename = 'meeting_saved_chat #12(10-01-20).txt'
-filepath = os.path.join('zoom_chats', filename)
+filename = 'meeting_saved_chat #17(10-20-20).txt'
+filepath = os.path.join('Att_txt_files', filename)
 print(os.getcwd())
 print(filepath)
 
