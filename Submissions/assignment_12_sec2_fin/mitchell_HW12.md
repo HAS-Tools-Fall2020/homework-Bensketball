@@ -5,7 +5,7 @@
 ___
 <a name="grd"></a>
 ### ***Grade***
-
+3/3 - Nice work!
 
 ___
 ### Table of Contents:
