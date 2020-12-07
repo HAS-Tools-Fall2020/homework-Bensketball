@@ -219,7 +219,7 @@ flow_weekly = flow_data.resample("W", on='datetime').mean()
 # As an added bonus I am taking the natural log of the data
 # because it fits the model better with all data included
 flow_weekly.insert(2, 'log_flow', np.log(flow_weekly['flow']), True)
-print(flow_weekly)
+# print(flow_weekly)
 # print(type(flow_weekly['log_flow']))
 
 
