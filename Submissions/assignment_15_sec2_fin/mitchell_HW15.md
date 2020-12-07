@@ -19,7 +19,10 @@ ___
 ## Assignment Questions
 
 ___
-`Was unsure if I needed to do a write up this week.  I won last week, so I am opting to use the freebie on the ReadMe file.  If I still need to do one for any reason, I will happily do one to make up.  Please let me know.  I have completed my forecast already.`
+`I am unsure if I needed to do a write up this week.  I won last week, so I am opting to use the freebie on the ReadMe file.  If I still need to do one for any reason, I will happily do one to make up.  Please let me know.  I have completed my forecast already.`
+
+`Thank you so much for your help at 9 AM today!  I was getting a bit stressed with all the problems I was having Saturday and yesterday.  I just wanted to say that I learned a lot in the class and I have enjoyed this class a lot!  Thank you for creating the class and teaching it.  It was a difficult and strange semester for everyone so thank you for your hard work!  There are many undergrads interested in this class from the 300 level course I have been teaching this semester.  I have been able to show some of my interested undergrad students a few tricks here and there. :)
+`
 
 ___
 <a name="cod"></a>
