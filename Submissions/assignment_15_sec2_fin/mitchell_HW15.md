@@ -5,7 +5,7 @@
 ___
 <a name="grd"></a>
 ### ***Grade***
-
+3/3 - Free pass accepted!  Great job this semester. It was fun to have you in class again and I'm really happy to hear that you found the class useful. That is definitely the goal here and I hope that it will serve you well in the future :) 
 
 ___
 ### Table of Contents:
